@@ -59,9 +59,9 @@ Object::Object() {
 
     last_char = '~';                        //characters last ('~' acts as null)
     
-    offset = 0;
+    offset = 10;
     
-    samp = 10;                             //sample attributes - cropped immediately after contrast filtering to B&W
+    samp = 20;                             //sample attributes - cropped immediately after contrast filtering to B&W
     samp_window_width = 300 < temp.cols ? 300:temp.cols;                //sample frame is centered
     samp_window_height = 300 < temp.rows ? 300:temp.rows;
     samp_interval = 30;
@@ -71,7 +71,7 @@ Object::Object() {
     object_height_min =  30;
     object_height_max =  200;
     
-    diff_thresh = 20;                       //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
+    diff_thresh = 50;                       //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
 
     scan_y_offset = 0;
 }
@@ -87,7 +87,7 @@ void Object::getAverage() {
     avg[1] = 0;
     avg[2] = 0;
     for (int i = offset; i < samp+offset; i++) {        //Samples on a diagonal from top-left corner plus offset down size of "samp"
-        Vec3b tmp_color = capture.at<Vec3b>(Point(i,offset));   //Add up each color channel...
+        Vec3b tmp_color = capture.at<Vec3b>(Point(offset,i));   //Add up each color channel...
         avg[0] += (int)tmp_color[2];
         avg[1] += (int)tmp_color[1];
         avg[2] += (int)tmp_color[0];
@@ -132,12 +132,12 @@ bool Object::getObject(int duration, char& characterList) {
         }   //(Yes, for loops would have been easier)
         
         // **********Display Test Start********** //
-       
+        /*   
         Mat sizeMat(30,30,  CV_8UC3), temp;
         resize(video, sizeMat, sizeMat.size(), INTER_LINEAR);
         cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
         std::cout << "Frame: " << std::endl << temp << std::endl;
- 
+ 	*/
 	// **********Display Test End********** //
         x = 0;                                              //Reset to first pixel again
         y = scan_y_offset;
@@ -208,15 +208,16 @@ bool Object::getObject(int duration, char& characterList) {
 float Object::getDiff(Mat &video, int &x, int &y, int* background) { //As described above, this is a literal distance formula, given r, g, and b are used as base references
     
     Vec3b tmp_color = video.at<cv::Vec3b>(Point(x,y));
-    int tmp_diff = abs(background[2] - tmp_color[0]);
-    return tmp_diff;
-    /*
+    //int tmp_diff = abs(background[2] - tmp_color[0]);
+    //return tmp_diff;
+    
     int tmp_total = tmp_color[0] + tmp_color[1] + tmp_color[2];
     float scaling_factor = 3*255/tmp_total;
     int greyness = abs(255 - tmp_color[0]*scaling_factor) + abs(255 - tmp_color[1]*scaling_factor) + abs(255 - tmp_color[2]*scaling_factor);
-    */
+    std::cout << "O:" << greyness << std::endl;
+    return greyness;
 }
 
 float abs(float n) {
-   return (n > 0 ? n:0);
+   return (n > 0 ? n:-n);
 }
