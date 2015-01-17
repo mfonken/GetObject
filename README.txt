@@ -36,7 +36,7 @@ git pull https://github.com/mfonken/recognize
 
 >compile 
 1) make
-2) ./<YOUR PROJECT NAME>.cpp
+2) ./<YOUR PROJECT NAME>
 
 Instructions and opencv installation on Mac - http://blogs.wcode.org/2014/10/howto-install-build-and-use-opencv-macosx-10-10/
 

@@ -39,8 +39,10 @@ int main( int argc, char** argv) {
     charactersFile.open("characters.txt", std::ofstream::out | std::ofstream::trunc);   //clear and open "characters.txt"
     
     VideoCapture cap(0);                        //Initalize camera
-    if(!cap.isOpened())
+    if(!cap.isOpened()) {
+        cout << "No camera!" << endl;
         return -1;
+    }
     
     Mat capture, object(100, 100,  CV_8UC3);    //create image containers
     
@@ -121,7 +123,7 @@ int main( int argc, char** argv) {
                 y = 0;
             while (y < video.size().height) {                   //Dual loop scans row from top to bottom, setting pixels to BGR to B&W based off distance from avgs
                 while (x < video.size().width) {                //white if similar, black if unique
-                    video.at<cv::Vec3b>(y,x) = (getDiff(video, x, y, avg_r, avg_g, avg_b) > diff_thresh) ? Vec3b(0,0,0):Vec3b(255,255,255);
+                    video.at<cv::Vec3b>(y,x) = (getDiff(video, x, y, avg_r, avg_g, avg_b) > diff_thresh) ? Vec3b(255,255,255):Vec3b(0,0,0);
                     x++;
                 }
                 x = 0;
@@ -313,11 +315,12 @@ float scan(Mat &video, char dir, int &x, int &y) {
     }
 }
 
-//*********************checkChar**************************//
+/*
+// *********************checkChar************************** //
 char checkChar(Mat &obj) {                              //Receives only the pointer to image matrix of the object in question
     float match_thresh = 0.7;                           //Match threshold, acts as percent
     std::string charList = "ABCDEFGHIJKLMNOPQRSTUVQWXYZ1234567890!@#$%^&*()";   //List of possible objects, each has a corresponding .jpg in the /data folder
-    std::string similarChars[] = {"B8&", "I!", "J1", "O0", "S3$", "FE", "CG"};  //Collection of similar characters, add freely to this list
+    std::string similarChars[] = {"B8&", "I!", "J1", "OQ0", "S3$", "FE", "CG"};  //Collection of similar characters, add freely to this list
     for (int index = 0; index < charList.length (); index++) {                  //Go through each character starting with 'A'
         std::string path("data/");                      //Create path name
         path += charList.at(index);                     //...
@@ -355,7 +358,7 @@ char checkChar(Mat &obj) {                              //Receives only the poin
     return '~';         //If there is no match, return a '~' (local null character)
 }
 
-//********************checkSimilar************************//
+// ********************checkSimilar************************ //
 char checkSimilar(Mat &obj, std::string checkList) {    //Receives both the point to the object image matrix and a string of similar chars to check
     //cout << "Check list: " << checkList << endl;
     float best_match = 0.0;
@@ -381,3 +384,4 @@ char checkSimilar(Mat &obj, std::string checkList) {    //Receives both the poin
     }
     return checkList.at(best_index);                //...and is return as a literal char
 }
+*/
