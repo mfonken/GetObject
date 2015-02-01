@@ -13,7 +13,7 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <string>
-#include <ctime.h>
+#include <sys/time.h>
 
 using namespace cv;
 
@@ -66,7 +66,9 @@ Object::Object() {
 
 void Object::getAverage() {
     std::cout << "Get Average: ";
-    clock_t timer = clock();
+    timeval tb, te;
+    float duration;
+    gettimeofday(&tb, NULL);
     cap >> capture;
     memset(avg, 0, sizeof(3));
     for (int i = offset; i < samp+offset; i++) {        //Samples on a diagonal from top-left corner plus offset down size of "samp"
@@ -78,7 +80,9 @@ void Object::getAverage() {
     avg[0] /= samp;                                      //...and divide by length to get average
     avg[1] /= samp;
     avg[2] /= samp;
-    float duration = (float)(clock() - timer)/CLOCKS_PER_SEC;
+    gettimeofday(&tb, NULL);
+    duration = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
+    duration += (t2.tv_usec - t1.tv_usec) / 1000.0;
     std::cout << duration << "s" << std::endl;
 }
 
