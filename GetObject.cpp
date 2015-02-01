@@ -86,7 +86,7 @@ void Object::getAverage() {
     std::cout << duration << "s" << std::endl;
 }
 
-bool Object::getObject(int duration, char& characterList) {
+bool Object::getObject(int duration, char* characterList) {
     std::cout << "Checking Object for " << duration << "s:\n";
     timeval tb, te;
     gettimeofday(&tb, NULL);
