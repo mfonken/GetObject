@@ -81,8 +81,8 @@ void Object::getAverage() {
     avg[1] /= samp;
     avg[2] /= samp;
     gettimeofday(&tb, NULL);
-    duration = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
-    duration += (t2.tv_usec - t1.tv_usec) / 1000.0;
+    duration = (te.tv_sec - tb.tv_sec) * 1000.0;      // sec to ms
+    duration += (te.tv_usec - tb.tv_usec) / 1000.0;
     std::cout << duration << "s" << std::endl;
 }
 
