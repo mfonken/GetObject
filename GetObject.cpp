@@ -92,7 +92,7 @@ bool Object::getObject(int duration, char& characterList) {
     gettimeofday(&tb, NULL);
     int counter = 0;
     gettimeofday(&te, NULL)
-    while (te.tv_sec - tb.tv_sec) * 1000.0 < duration) {
+    while ((double)(te.tv_sec - tb.tv_sec) * 1000.0 < duration) {
         getAverage();
         counter++;
         std::cout << "Loop: " << counter << " | " << (te.tv_sec - tb.tv_sec) * 1000.0 << "s\n";
