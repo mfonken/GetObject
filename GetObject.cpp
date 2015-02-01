@@ -90,7 +90,7 @@ bool Object::getObject(int duration, char& characterList) {
     while ((float)(clock() - timer)/CLOCKS_PER_SEC < duration) {
         getAverage();
         counter++;
-        std::cout << "Loop: " << counter << " | " << ((float)std::clock() - timer)/CLOCKS_PER_SEC << "s\n";
+        std::cout << "Loop: " << counter << " | " << ((float)clock() - timer)/CLOCKS_PER_SEC << "s\n";
         cap >> capture;
         Mat video(capture, Rect((window_width - samp_window_width)/2, (window_height - samp_window_height)/2, samp_window_width, samp_window_height));
         int tmp_x_min = 0,                                  //Reset object location variables for new scan
