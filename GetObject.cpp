@@ -88,12 +88,12 @@ void Object::getAverage() {
 
 bool Object::getObject(int duration, char& characterList) {
     std::cout << "Checking Object for " << duration << "s:\n";
-    clock_t timer = clock();
+    gettimeofday(&tb, NULL);
     int counter = 0;
-    while ((float)(clock() - timer)/CLOCKS_PER_SEC < duration) {
+    while ((gettimeofday(&te, NULL).tv_sec - tb.tv_sec) * 1000.0 < duration) {
         getAverage();
         counter++;
-        std::cout << "Loop: " << counter << " | " << ((float)clock() - timer)/CLOCKS_PER_SEC << "s\n";
+        std::cout << "Loop: " << counter << " | " << (gettimeofday(&te, NULL).tv_sec - tb.tv_sec) * 1000.0 << "s\n";
         cap >> capture;
         Mat video(capture, Rect((window_width - samp_window_width)/2, (window_height - samp_window_height)/2, samp_window_width, samp_window_height));
         int tmp_x_min = 0,                                  //Reset object location variables for new scan
