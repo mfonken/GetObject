@@ -88,6 +88,7 @@ void Object::getAverage() {
 
 bool Object::getObject(int duration, char& characterList) {
     std::cout << "Checking Object for " << duration << "s:\n";
+    timeval tb, te;
     gettimeofday(&tb, NULL);
     int counter = 0;
     while ((gettimeofday(&te, NULL).tv_sec - tb.tv_sec) * 1000.0 < duration) {
