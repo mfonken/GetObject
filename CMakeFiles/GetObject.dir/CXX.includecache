@@ -21,17 +21,15 @@ Scan.cpp
 /home/GetObject/Scan.cpp
 CheckObject.cpp
 /home/GetObject/CheckObject.cpp
-fstream
--
-iostream
+=======
+/Users/matthewfonken/Downloads/GetObject/CheckObject.cpp
+stdio.h
 -
 opencv2/imgproc/imgproc.hpp
-/home/GetObject/opencv2/imgproc/imgproc.hpp
+/Users/matthewfonken/Downloads/GetObject/opencv2/imgproc/imgproc.hpp
 opencv2/highgui/highgui.hpp
-/home/GetObject/opencv2/highgui/highgui.hpp
+/Users/matthewfonken/Downloads/GetObject/opencv2/highgui/highgui.hpp
 string
--
-sys/time.h
 -
 
 /home/GetObject/Scan.cpp
@@ -47,4 +45,12 @@ iostream
 -
 GetObject.cpp
 /home/GetObject/GetObject.cpp
+=======
+/Users/matthewfonken/Downloads/GetObject/Scan.cpp
+stdio.h
+-
+opencv2/imgproc/imgproc.hpp
+/Users/matthewfonken/Downloads/GetObject/opencv2/imgproc/imgproc.hpp
+opencv2/highgui/highgui.hpp
+/Users/matthewfonken/Downloads/GetObject/opencv2/highgui/highgui.hpp
 
