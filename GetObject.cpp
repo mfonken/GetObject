@@ -17,6 +17,8 @@
 #include <stdio.h>
 
 using namespace cv;
+using namespace stdio;
+using namespace time;
 
 class Object {
     VideoCapture cap;                        //Initalize camera
@@ -67,7 +69,7 @@ Object::Object() {
 
 void Object::getAverage() {
     std::cout << "Get Average: ";
-    std::clock_t timer = std::clock();
+    clock_t timer = clock();
     cap >> capture;
     memset(avg, 0, sizeof(3));
     for (int i = offset; i < samp+offset; i++) {        //Samples on a diagonal from top-left corner plus offset down size of "samp"
@@ -79,15 +81,15 @@ void Object::getAverage() {
     avg[0] /= samp;                                      //...and divide by length to get average
     avg[1] /= samp;
     avg[2] /= samp;
-    float duration = (float)(std::clock() - timer)/CLOCKS_PER_SEC;
+    float duration = (float)(clock() - timer)/CLOCKS_PER_SEC;
     std::cout << duration << "s" << std::endl;
 }
 
 bool Object::getObject(int duration, char& characterList) {
     std::cout << "Checking Object for " << duration << "s:\n";
-    std::clock_t timer = std::clock();
+    clock_t timer = clock();
     int counter = 0;
-    while ((float)(std::clock() - timer)/CLOCKS_PER_SEC < duration) {
+    while ((float)(clock() - timer)/CLOCKS_PER_SEC < duration) {
         getAverage();
         counter++;
         std::cout << "Loop: " << counter << " | " << ((float)std::clock() - timer)/CLOCKS_PER_SEC << "s\n";
