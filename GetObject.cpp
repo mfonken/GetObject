@@ -17,8 +17,6 @@
 #include <stdio.h>
 
 using namespace cv;
-using namespace stdio;
-using namespace time;
 
 class Object {
     VideoCapture cap;                        //Initalize camera
