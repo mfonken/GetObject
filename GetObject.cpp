@@ -31,7 +31,7 @@ class Object {
 public:
     Object();
     void getAverage();
-    bool getObject(int, char&);
+    bool getObject(int, char&ß);
     float getDiff(Mat&, int&, int&,int*);
 };
 
@@ -80,22 +80,22 @@ void Object::getAverage() {
     avg[0] /= samp;                                      //...and divide by length to get average
     avg[1] /= samp;
     avg[2] /= samp;
-    gettimeofday(&tb, NULL);
-    duration = (te.tv_sec - tb.tv_sec) * 1000.0;      // sec to ms
+    gettimeofday(&te, NULL);
+    duration = (te.tv_sec - tb.tv_sec) * 1000;      // sec to ms
     duration += (te.tv_usec - tb.tv_usec) / 1000.0;
-    std::cout << duration << "s" << std::endl;
+    std::cout << duration << "ms" << std::endl;
 }
 
-bool Object::getObject(int duration, char* characterList) {
+bool Object::getObject(int duration, char& characterList) {
     std::cout << "Checking Object for " << duration << "s:\n";
     timeval tb, te;
     gettimeofday(&tb, NULL);
     int counter = 0;
     gettimeofday(&te, NULL);
-    while ((double)(te.tv_sec - tb.tv_sec) * 1000.0 < duration) {
+    while ((double)(te.tv_sec - tb.tv_sec) < duration) {
         getAverage();
         counter++;
-        std::cout << "Loop: " << counter << " | " << (te.tv_sec - tb.tv_sec) * 1000.0 << "s\n";
+        std::cout << "Loop: " << counter << " | " << (te.tv_sec - tb.tv_sec) + (te.tv_usec - tb.tv_usec)/1000000.0 << "s\n";
         cap >> capture;
         Mat video(capture, Rect((window_width - samp_window_width)/2, (window_height - samp_window_height)/2, samp_window_width, samp_window_height));
         int tmp_x_min = 0,                                  //Reset object location variables for new scan
