@@ -13,8 +13,8 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <string>
-//#include <time.h>
-//#include <stdio.h>
+#include <time.h>
+#include <stdio.h>
 
 using namespace cv;
 
