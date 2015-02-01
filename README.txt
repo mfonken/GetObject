@@ -3,7 +3,7 @@ Setup and compile instructions from terminal:
 Install OpenCV on Debian Tutorial - http://indranilsinharoy.com/2012/11/01/installing-opencv-on-linux/
 
 > Directory used - home/debian/Desktop/
-
+a
 > Installing OpenCV on Debian:
 1) sudo apt-get install build-essential
 2) sudo apt-get install cmake
@@ -25,7 +25,7 @@ cmake_minimum_required(VERSION 2.8)
 project( <YOUR PROJECT NAME> )
 find_package( OpenCV )
 include_directories( ${OpenCV_INCLUDE_DIRS} )
-add_executable( <YOUR PROJECT NAME> <YOUR PROJECT NAME>.cpp )
+add_executable( <YOUR PROJECT NAME> <PROGRAM FILE WITH int main…>.cpp )
 target_link_libraries( <YOUR PROJECT NAME> ${OpenCV_LIBS} )
 
 2) cd home/debian/Desktop/recognize

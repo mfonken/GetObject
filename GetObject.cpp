@@ -31,7 +31,7 @@ class Object {
 public:
     Object();
     void getAverage();
-    bool getObject(int, char&ß);
+    bool getObject(int, char&);
     float getDiff(Mat&, int&, int&,int*);
 };
 
