@@ -6,51 +6,45 @@
 
 #IncludeRegexTransform: 
 
-/home/GetObject/CheckObject.cpp
+/home/debian/Desktop/GetObject/CheckObject.cpp
 stdio.h
 -
 opencv2/imgproc/imgproc.hpp
-/home/GetObject/opencv2/imgproc/imgproc.hpp
+/home/debian/Desktop/GetObject/opencv2/imgproc/imgproc.hpp
 opencv2/highgui/highgui.hpp
-/home/GetObject/opencv2/highgui/highgui.hpp
+/home/debian/Desktop/GetObject/opencv2/highgui/highgui.hpp
 string
 -
 
-/home/GetObject/GetObject.cpp
+/home/debian/Desktop/GetObject/GetObject.cpp
 Scan.cpp
-/home/GetObject/Scan.cpp
+/home/debian/Desktop/GetObject/Scan.cpp
 CheckObject.cpp
-/home/GetObject/CheckObject.cpp
-=======
-/Users/matthewfonken/Downloads/GetObject/CheckObject.cpp
-stdio.h
+/home/debian/Desktop/GetObject/CheckObject.cpp
+fstream
+-
+iostream
 -
 opencv2/imgproc/imgproc.hpp
-/Users/matthewfonken/Downloads/GetObject/opencv2/imgproc/imgproc.hpp
+/home/debian/Desktop/GetObject/opencv2/imgproc/imgproc.hpp
 opencv2/highgui/highgui.hpp
-/Users/matthewfonken/Downloads/GetObject/opencv2/highgui/highgui.hpp
+/home/debian/Desktop/GetObject/opencv2/highgui/highgui.hpp
 string
 -
+sys/time.h
+-
 
-/home/GetObject/Scan.cpp
+/home/debian/Desktop/GetObject/Scan.cpp
 stdio.h
 -
 opencv2/imgproc/imgproc.hpp
-/home/GetObject/opencv2/imgproc/imgproc.hpp
+/home/debian/Desktop/GetObject/opencv2/imgproc/imgproc.hpp
 opencv2/highgui/highgui.hpp
-/home/GetObject/opencv2/highgui/highgui.hpp
+/home/debian/Desktop/GetObject/opencv2/highgui/highgui.hpp
 
-/home/GetObject/driver.cpp
+/home/debian/Desktop/GetObject/driver.cpp
 iostream
 -
 GetObject.cpp
-/home/GetObject/GetObject.cpp
-=======
-/Users/matthewfonken/Downloads/GetObject/Scan.cpp
-stdio.h
--
-opencv2/imgproc/imgproc.hpp
-/Users/matthewfonken/Downloads/GetObject/opencv2/imgproc/imgproc.hpp
-opencv2/highgui/highgui.hpp
-/Users/matthewfonken/Downloads/GetObject/opencv2/highgui/highgui.hpp
+/home/debian/Desktop/GetObject/GetObject.cpp
 
