@@ -91,10 +91,11 @@ bool Object::getObject(int duration, char& characterList) {
     timeval tb, te;
     gettimeofday(&tb, NULL);
     int counter = 0;
-    while ((gettimeofday(&te, NULL).tv_sec - tb.tv_sec) * 1000.0 < duration) {
+    gettimeofday(&te, NULL)
+    while (te.tv_sec - tb.tv_sec) * 1000.0 < duration) {
         getAverage();
         counter++;
-        std::cout << "Loop: " << counter << " | " << (gettimeofday(&te, NULL).tv_sec - tb.tv_sec) * 1000.0 << "s\n";
+        std::cout << "Loop: " << counter << " | " << (te.tv_sec - tb.tv_sec) * 1000.0 << "s\n";
         cap >> capture;
         Mat video(capture, Rect((window_width - samp_window_width)/2, (window_height - samp_window_height)/2, samp_window_width, samp_window_height));
         int tmp_x_min = 0,                                  //Reset object location variables for new scan
@@ -171,6 +172,7 @@ bool Object::getObject(int duration, char& characterList) {
             }
             last_char = c;                                          //Finally, set this new character to be the last_char
         }
+        gettimeofday(&te, NULL);
     }
     return false;
 }
