@@ -15,6 +15,6 @@ int main(int argc, const char * argv[]) {
     object.getAverage();
     char list;
     //std::cout << object.getObject(5,list) << std::endl;
-    std::cout << "ended" << endl;
+    std::cout << "ended" << std::endl;
     return 0;
 }
