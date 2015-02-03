@@ -7,8 +7,8 @@
 //
 
 #include <stdio.h>
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
+#include "opencv/imgproc/include/opencv2/imgproc/imgproc.hpp"
+#include "opencv/highgui/include/opencv2/highgui/highgui.hpp"
 
 using namespace cv;
 
