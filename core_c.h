@@ -44,7 +44,7 @@
 #ifndef __OPENCV_CORE_C_H__
 #define __OPENCV_CORE_C_H__
 
-#include "types_c.h"
+#include "core_types_c.h"
 
 #ifdef __cplusplus
 extern "C" {
