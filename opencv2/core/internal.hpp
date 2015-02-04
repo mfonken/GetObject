@@ -50,8 +50,8 @@
 
 #include <vector>
 
-#include "core.hpp"
-#include "types_c.h"
+#include "opencv2/core/core.hpp"
+#include "opencv2/core/types_c.h"
 
 #if defined WIN32 || defined _WIN32
 #  ifndef WIN32

@@ -100,7 +100,7 @@
 #ifndef __OPENCV_CORE_WIMAGE_HPP__
 #define __OPENCV_CORE_WIMAGE_HPP__
 
-#include "core_c.h"
+#include "opencv2/core/core_c.h"
 
 #ifdef __cplusplus
 
