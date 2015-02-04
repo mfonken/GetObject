@@ -4,13 +4,7 @@
 CMakeFiles/GetObject.dir/driver.cpp.o: CheckObject.cpp
 CMakeFiles/GetObject.dir/driver.cpp.o: GetObject.cpp
 CMakeFiles/GetObject.dir/driver.cpp.o: Scan.cpp
-CMakeFiles/GetObject.dir/driver.cpp.o: core.hpp
-CMakeFiles/GetObject.dir/driver.cpp.o: core_c.h
-CMakeFiles/GetObject.dir/driver.cpp.o: core_types_c.h
 CMakeFiles/GetObject.dir/driver.cpp.o: driver.cpp
-CMakeFiles/GetObject.dir/driver.cpp.o: highgui.hpp
-CMakeFiles/GetObject.dir/driver.cpp.o: highgui_c.h
-CMakeFiles/GetObject.dir/driver.cpp.o: imgproc.hpp
-CMakeFiles/GetObject.dir/driver.cpp.o: types_c.h
-CMakeFiles/GetObject.dir/driver.cpp.o: version.hpp
+CMakeFiles/GetObject.dir/driver.cpp.o: opencv2/highgui/highgui.hpp
+CMakeFiles/GetObject.dir/driver.cpp.o: opencv2/imgproc/imgproc.hpp
 
