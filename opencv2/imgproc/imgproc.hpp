@@ -48,7 +48,7 @@
 #define __OPENCV_IMGPROC_HPP__
 
 #include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/types_c.h"
+#include "types_c.h"
 
 #ifdef __cplusplus
 
