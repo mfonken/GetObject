@@ -10,8 +10,8 @@
 #include "CheckObject.cpp"
 #include <fstream>
 #include <iostream>
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
+#include "imgproc.hpp"
+#include "highgui.hpp"
 #include <string>
 #include <sys/time.h>
 
