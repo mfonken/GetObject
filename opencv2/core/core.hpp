@@ -46,8 +46,8 @@
 #ifndef __OPENCV_CORE_HPP__
 #define __OPENCV_CORE_HPP__
 
-#include "opencv2/core/types_c.h"
-#include "opencv2/core/version.hpp"
+#include "types_c.h"
+#include "version.hpp"
 
 #ifdef __cplusplus
 

@@ -45,8 +45,8 @@
 
 #ifdef __cplusplus
 
-#include "opencv2/core/core.hpp"
-#include "opencv2/core/opengl_interop_deprecated.hpp"
+#include "core.hpp"
+#include "opengl_interop_deprecated.hpp"
 
 namespace cv { namespace ogl {
 
