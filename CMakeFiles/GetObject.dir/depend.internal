@@ -5,14 +5,11 @@ CMakeFiles/GetObject.dir/driver.cpp.o
  /Users/matthewfonken/Downloads/GetObject/CheckObject.cpp
  /Users/matthewfonken/Downloads/GetObject/GetObject.cpp
  /Users/matthewfonken/Downloads/GetObject/Scan.cpp
+ /Users/matthewfonken/Downloads/GetObject/core.hpp
+ /Users/matthewfonken/Downloads/GetObject/core_c.h
  /Users/matthewfonken/Downloads/GetObject/driver.cpp
- /Users/matthewfonken/Downloads/GetObject/opencv2/highgui/highgui.hpp
- /Users/matthewfonken/Downloads/GetObject/opencv2/imgproc/imgproc.hpp
- /opt/local/include/opencv2/core/core.hpp
- /opt/local/include/opencv2/core/core_c.h
- /opt/local/include/opencv2/core/mat.hpp
- /opt/local/include/opencv2/core/operations.hpp
- /opt/local/include/opencv2/core/types_c.h
- /opt/local/include/opencv2/core/version.hpp
- /opt/local/include/opencv2/highgui/highgui_c.h
- /opt/local/include/opencv2/imgproc/types_c.h
+ /Users/matthewfonken/Downloads/GetObject/highgui.hpp
+ /Users/matthewfonken/Downloads/GetObject/highgui_c.h
+ /Users/matthewfonken/Downloads/GetObject/imgproc.hpp
+ /Users/matthewfonken/Downloads/GetObject/types_c.h
+ /Users/matthewfonken/Downloads/GetObject/version.hpp

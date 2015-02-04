@@ -81,37 +81,6 @@ GetObject_EXTERNAL_OBJECTS =
 
 GetObject: CMakeFiles/GetObject.dir/driver.cpp.o
 GetObject: CMakeFiles/GetObject.dir/build.make
-GetObject: /opt/local/lib/libopencv_videostab.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_video.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_ts.a
-GetObject: /opt/local/lib/libopencv_superres.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_stitching.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_photo.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_objdetect.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_nonfree.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_ml.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_legacy.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_imgproc.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_highgui.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_gpu.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_flann.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_features2d.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_core.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_contrib.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_calib3d.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_nonfree.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_gpu.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_photo.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_objdetect.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_legacy.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_video.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_ml.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_calib3d.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_features2d.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_highgui.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_imgproc.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_flann.2.4.10.dylib
-GetObject: /opt/local/lib/libopencv_core.2.4.10.dylib
 GetObject: CMakeFiles/GetObject.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable GetObject"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GetObject.dir/link.txt --verbose=$(VERBOSE)
