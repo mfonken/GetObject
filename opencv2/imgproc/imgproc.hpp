@@ -54,10 +54,10 @@ class
 
 #ifdef __cplusplus
 
-/*! \namespace cv
+/* ! \namespace cv
  Namespace where all the C++ OpenCV functionality resides
  */
-namespace cv;
+namespace cv
 
 {
 
