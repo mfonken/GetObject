@@ -9,10 +9,4 @@ CMakeFiles/GetObject.dir/driver.cpp.o: opencv2/highgui/highgui.hpp
 CMakeFiles/GetObject.dir/driver.cpp.o: opencv2/highgui/highgui_c.h
 CMakeFiles/GetObject.dir/driver.cpp.o: opencv2/imgproc/imgproc.hpp
 CMakeFiles/GetObject.dir/driver.cpp.o: opencv2/imgproc/types_c.h
-CMakeFiles/GetObject.dir/driver.cpp.o: /opt/local/include/opencv2/core/core.hpp
-CMakeFiles/GetObject.dir/driver.cpp.o: /opt/local/include/opencv2/core/core_c.h
-CMakeFiles/GetObject.dir/driver.cpp.o: /opt/local/include/opencv2/core/mat.hpp
-CMakeFiles/GetObject.dir/driver.cpp.o: /opt/local/include/opencv2/core/operations.hpp
-CMakeFiles/GetObject.dir/driver.cpp.o: /opt/local/include/opencv2/core/types_c.h
-CMakeFiles/GetObject.dir/driver.cpp.o: /opt/local/include/opencv2/core/version.hpp
 

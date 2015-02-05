@@ -503,7 +503,7 @@ enum
 //! finds arbitrary template in the grayscale image using Generalized Hough Transform
 //! Ballard, D.H. (1981). Generalizing the Hough transform to detect arbitrary shapes. Pattern Recognition 13 (2): 111-122.
 //! Guil, N., González-Linares, J.M. and Zapata, E.L. (1999). Bidimensional shape detection using an invariant approach. Pattern Recognition 32 (6): 1025-1038.
-class CV_EXPORTS GeneralizedHough : public Algorithm
+class GeneralizedHough : public Algorithm //class CV_EXPORTS GeneralizedHough : public Algorithm
 {
 public:
     static Ptr<GeneralizedHough> create(int method);
@@ -763,7 +763,7 @@ CV_EXPORTS double compareHist( const SparseMat& H1, const SparseMat& H2, int met
 //! normalizes the grayscale image brightness and contrast by normalizing its histogram
 CV_EXPORTS_W void equalizeHist( InputArray src, OutputArray dst );
 
-class CV_EXPORTS_W CLAHE : public Algorithm
+class CLAHE : public Algorithm //class CV_EXPORTS_W CLAHE : public Algorithm
 {
 public:
     CV_WRAP virtual void apply(InputArray src, OutputArray dst) = 0;
