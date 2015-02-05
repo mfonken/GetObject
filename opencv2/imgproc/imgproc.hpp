@@ -57,7 +57,7 @@ class
 /*! \namespace cv
  Namespace where all the C++ OpenCV functionality resides
  */
-namespace cv
+using namespace cv
 {
 
 //! various border interpolation methods
