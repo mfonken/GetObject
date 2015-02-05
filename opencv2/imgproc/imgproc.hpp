@@ -50,11 +50,9 @@
 #include "opencv2/core/core.hpp"
 #include "types_c.h"
 
-class
-
 #ifdef __cplusplus
 
-/* ! \namespace cv
+/*! \namespace cv
  Namespace where all the C++ OpenCV functionality resides
  */
 using namespace cv
