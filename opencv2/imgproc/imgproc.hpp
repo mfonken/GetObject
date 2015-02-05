@@ -50,6 +50,8 @@
 #include "opencv2/core/core.hpp"
 #include "types_c.h"
 
+class
+
 #ifdef __cplusplus
 
 /*! \namespace cv
@@ -499,11 +501,11 @@ enum
     GHT_SCALE = 1,
     GHT_ROTATION = 2
 };
-
+/*
 //! finds arbitrary template in the grayscale image using Generalized Hough Transform
 //! Ballard, D.H. (1981). Generalizing the Hough transform to detect arbitrary shapes. Pattern Recognition 13 (2): 111-122.
 //! Guil, N., González-Linares, J.M. and Zapata, E.L. (1999). Bidimensional shape detection using an invariant approach. Pattern Recognition 32 (6): 1025-1038.
-class GeneralizedHough : public Algorithm //class CV_EXPORTS GeneralizedHough : public Algorithm
+class CV_EXPORTS GeneralizedHough : public Algorithm
 {
 public:
     static Ptr<GeneralizedHough> create(int method);
@@ -528,7 +530,7 @@ protected:
 private:
     Mat edges_, dx_, dy_;
 };
-
+*/
 //! erodes the image (applies the local minimum operator)
 CV_EXPORTS_W void erode( InputArray src, OutputArray dst, InputArray kernel,
                          Point anchor=Point(-1,-1), int iterations=1,
@@ -762,8 +764,8 @@ CV_EXPORTS double compareHist( const SparseMat& H1, const SparseMat& H2, int met
 
 //! normalizes the grayscale image brightness and contrast by normalizing its histogram
 CV_EXPORTS_W void equalizeHist( InputArray src, OutputArray dst );
-
-class CLAHE : public Algorithm //class CV_EXPORTS_W CLAHE : public Algorithm
+/*
+class CV_EXPORTS_W CLAHE : public Algorithm
 {
 public:
     CV_WRAP virtual void apply(InputArray src, OutputArray dst) = 0;
@@ -776,6 +778,7 @@ public:
 
     CV_WRAP virtual void collectGarbage() = 0;
 };
+*/
 CV_EXPORTS_W Ptr<CLAHE> createCLAHE(double clipLimit = 40.0, Size tileGridSize = Size(8, 8));
 
 CV_EXPORTS float EMD( InputArray signature1, InputArray signature2,
