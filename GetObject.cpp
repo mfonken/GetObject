@@ -56,8 +56,8 @@ Object::Object() {
     offset = 100;
     
     samp = 200;                             //sample attributes - cropped immediately after contrast filtering to B&W
-    samp_window_width = 400;                //sample frame is centered
-    samp_window_height = 400;
+    samp_window_width = 300;                //sample frame is centered
+    samp_window_height = 300;
     samp_interval = 50;
     
     object_width_min =  10;                 //object attributes - frame of expected object to be found
@@ -101,7 +101,7 @@ bool Object::getObject(int duration, char& characterList) {
         counter++;
         std::cout << "Loop: " << counter << " | " << (te.tv_sec - tb.tv_sec) + (te.tv_usec - tb.tv_usec)/1000000.0 << "s\n";
         cap >> capture;
-        Mat video(capture, Rect(0,0, window_width, window_height));
+        Mat video(capture, Rect((window_width-samp_window_width)/2,(window_height-samp_window_height)/2, samp_window_width, samp_window_height));
         int tmp_x_min = 0,                                  //Reset object location variables for new scan
         tmp_x_max = 1,
         tmp_y_min = 0,
@@ -143,7 +143,7 @@ bool Object::getObject(int duration, char& characterList) {
                     //If it fits the defined possible object size...
                     if (object_width > object_width_min && object_width < object_width_max && object_height > object_height_min && object_height < object_height_max) {
                         
-                        //rectangle(video, Point(tmp_x_min, tmp_y_min), Point(tmp_x_min+object_width, tmp_y_min+object_height), Scalar(0,255,0)); //draw a rectangle over it
+                        rectangle(video, Point(tmp_x_min, tmp_y_min), Point(tmp_x_min+object_width, tmp_y_min+object_height), Scalar(0,255,0)); //draw a rectangle over it
                         //cout << "Rectangle made at (" << x-tmp_x_min << ", " << y-tmp_y_min << ")" << endl;
                         //imshow("Object Found", object);             //display it in another window
                         Mat tmp (video, Rect(tmp_x_min, tmp_y_min, object_width, object_height));   //crop it out onto a new matrix, first a tmp one...
@@ -163,7 +163,7 @@ bool Object::getObject(int duration, char& characterList) {
             y+=samp_interval;
         }
     end_loop:
-        //imshow("Filtered", video);                      //End of loop, below is where the string of found chars and "character.txt" are managed
+        imshow("Filtered", video);                      //End of loop, below is where the string of found chars and "character.txt" are managed
         
         if (c != last_char && c != '~') {                           //If a different character is found (and not a '~' local null), c and last_char while be different...
             bool exists = false;                                    //reset temporary flag
