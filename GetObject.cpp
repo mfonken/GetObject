@@ -42,10 +42,11 @@ Object::Object() {
     object = tempObject;
     if(!cap.isOpened()) {
         std::cout << "No camera!" << std::endl;
+        return;
     }
     
-    window_width = 1280;
-    window_height = 720;
+    window_width = 300;
+    window_height = 300;
 
     last_char = '~';                        //characters last ('~' acts as null)
     
@@ -97,7 +98,7 @@ bool Object::getObject(int duration, char& characterList) {
         counter++;
         std::cout << "Loop: " << counter << " | " << (te.tv_sec - tb.tv_sec) + (te.tv_usec - tb.tv_usec)/1000000.0 << "s\n";
         cap >> capture;
-        Mat video(capture, Rect((window_width - samp_window_width)/2, (window_height - samp_window_height)/2, samp_window_width, samp_window_height));
+        Mat video(capture, Rect(0,0, window_width, window_height));
         int tmp_x_min = 0,                                  //Reset object location variables for new scan
         tmp_x_max = 1,
         tmp_y_min = 0,
@@ -125,7 +126,7 @@ bool Object::getObject(int duration, char& characterList) {
                 tmp_x_max = 1;
                 tmp_y_min = 0;
                 tmp_y_max = 1;
-                //imshow("Recognize for Debian", video);
+                imshow("Recognize for Debian", video);
                 if ((int)video.at<Vec3b>(Point(x,y))[0] == 0) { //...a black pixel is found
                     circle(video, Point(x,y), 2, Scalar(0,0,255), 3, 8, 0);
                     Scan scanner;
