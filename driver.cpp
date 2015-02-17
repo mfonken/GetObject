@@ -10,11 +10,13 @@
 #include "GetObject.cpp"
 
 int main(int argc, const char * argv[]) {
-    std::cout << "...\n";
+    int duration = 30;
+    if (argc > 1) duration = atoi(argv[1]);
+    std::cout << "Running GetObject for " << duration << " seconds." << std::endl;
     Object object;
     object.getAverage();
     char list;
-    std::cout << object.getObject(10,list) << std::endl;
+    std::cout << object.getObject(duration,list) << std::endl;
     std::cout << "ended" << std::endl;
     return 0;
 }

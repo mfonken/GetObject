@@ -36,6 +36,7 @@ public:
 };
 
 Object::Object() {
+    std::cout << "Finding camera" << std::endl;
     VideoCapture tempCap(0);
     cap = tempCap;
     Mat tempObject(100, 100,  CV_8UC3);
@@ -44,9 +45,11 @@ Object::Object() {
         std::cout << "No camera!" << std::endl;
         return;
     }
-    
-    window_width = 300;
-    window_height = 300;
+    Mat temp;
+    cap >> temp;
+    std::cout << "cols: " << temp.cols << " | rows: " << temp.rows << std::endl;
+    window_width = temp.cols;
+    window_height = temp.rows;
 
     last_char = '~';                        //characters last ('~' acts as null)
     
@@ -66,7 +69,7 @@ Object::Object() {
 }
 
 void Object::getAverage() {
-    std::cout << "Get Average: ";
+    //std::cout << "Get Average: ";
     timeval tb, te;
     float duration;
     gettimeofday(&tb, NULL);
@@ -84,7 +87,7 @@ void Object::getAverage() {
     gettimeofday(&te, NULL);
     duration = (te.tv_sec - tb.tv_sec) * 1000;      // sec to ms
     duration += (te.tv_usec - tb.tv_usec) / 1000.0;
-    std::cout << duration << "ms" << std::endl;
+    //std::cout << duration << "ms" << std::endl;
 }
 
 bool Object::getObject(int duration, char& characterList) {
@@ -126,9 +129,9 @@ bool Object::getObject(int duration, char& characterList) {
                 tmp_x_max = 1;
                 tmp_y_min = 0;
                 tmp_y_max = 1;
-                imshow("Recognize for Debian", video);
+                //imshow("Recognize for Debian", video);
                 if ((int)video.at<Vec3b>(Point(x,y))[0] == 0) { //...a black pixel is found
-                    circle(video, Point(x,y), 2, Scalar(0,0,255), 3, 8, 0);
+                    //circle(video, Point(x,y), 2, Scalar(0,0,255), 3, 8, 0);
                     Scan scanner;
                     tmp_x_min = (int)scanner.scan(video, 'x', x, y);        //Possible object, scan all directions from this point
                     tmp_x_max = (int)scanner.scan(video, 'X', x, y);        //for continuity to find full object
@@ -140,7 +143,7 @@ bool Object::getObject(int duration, char& characterList) {
                     //If it fits the defined possible object size...
                     if (object_width > object_width_min && object_width < object_width_max && object_height > object_height_min && object_height < object_height_max) {
                         
-                        rectangle(video, Point(tmp_x_min, tmp_y_min), Point(tmp_x_min+object_width, tmp_y_min+object_height), Scalar(0,255,0)); //draw a rectangle over it
+                        //rectangle(video, Point(tmp_x_min, tmp_y_min), Point(tmp_x_min+object_width, tmp_y_min+object_height), Scalar(0,255,0)); //draw a rectangle over it
                         //cout << "Rectangle made at (" << x-tmp_x_min << ", " << y-tmp_y_min << ")" << endl;
                         //imshow("Object Found", object);             //display it in another window
                         Mat tmp (video, Rect(tmp_x_min, tmp_y_min, object_width, object_height));   //crop it out onto a new matrix, first a tmp one...

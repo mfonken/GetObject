@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.3.1)
 project( GetObject )
 find_package( OpenCV )
 include_directories( ${OpenCV_INCLUDE_DIRS} )
