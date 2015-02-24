@@ -37,7 +37,7 @@ public:
 
 Object::Object() {
     std::cout << "Finding camera" << std::endl;
-    VideoCapture tempCap(0);
+    VideoCapture tempCap(0);    
     cap = tempCap;
     Mat tempObject(100, 100,  CV_8UC3);
     object = tempObject;
@@ -163,7 +163,7 @@ bool Object::getObject(int duration, char& characterList) {
             y+=samp_interval;
         }
     end_loop:
-        imshow("Filtered", video);                      //End of loop, below is where the string of found chars and "character.txt" are managed
+        //imshow("Filtered", video);                      //End of loop, below is where the string of found chars and "character.txt" are managed
         
         if (c != last_char && c != '~') {                           //If a different character is found (and not a '~' local null), c and last_char while be different...
             bool exists = false;                                    //reset temporary flag
