@@ -41,7 +41,8 @@ Object::Object() {
 //    tempCap.getSupportedPreviewSizes();
     tempCap.set(CV_CAP_PROP_FRAME_WIDTH,320);
     tempCap.set(CV_CAP_PROP_FRAME_HEIGHT,240);
-    tempCap.set(CV_CAP_PROP_BRIGHTNESS, 1000.0);
+    tempCap.set(CV_CAP_PROP_BRIGHTNESS, 255.0);
+    tempCap.set(CV_CAP_PROP_CONTRAST, 100.0);
     cap = tempCap;
     Mat tempObject(100, 100,  CV_8UC3);
     object = tempObject;
