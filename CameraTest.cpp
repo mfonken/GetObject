@@ -29,8 +29,6 @@ Tester::Tester() {
     tempCap.set(CV_CAP_PROP_FRAME_WIDTH,320);
     tempCap.set(CV_CAP_PROP_FRAME_HEIGHT,240);
     cap = tempCap;
-    Mat tempObject(100, 100,  CV_8UC3);
-    object = tempObject;
     if(!cap.isOpened()) {
         std::cout << "No camera!" << std::endl;
         return;
