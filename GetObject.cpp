@@ -121,17 +121,12 @@ bool Object::getObject(int duration, char& characterList) {
             y++;
         }   //(Yes, for loops would have been easier)
         
-        
-        
         // **********Display Test Start********** //
         Mat sizeMat(50, 50,  CV_8UC3), temp;
-        resize(capture, sizeMat, sizeMat.size(), INTER_LINEAR);
-        cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
-        std::cout << "Frame: " << std::endl << temp << std::endl;
+        resize(video, sizeMat, sizeMat.size(), INTER_LINEAR);
+        //cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
+        std::cout << "Frame: " << std::endl << sizeMat << std::endl;
         // **********Display Test End********** //
-        
-        
-        
         x = 0;                                              //Reset to first pixel again
         y = 0;
         
