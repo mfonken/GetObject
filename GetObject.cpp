@@ -120,9 +120,17 @@ bool Object::getObject(int duration, char& characterList) {
             x = 0;
             y++;
         }   //(Yes, for loops would have been easier)
+        
+        
+        
+        // **********Display Test Start********** //
         Mat temp(10, 10,  CV_8UC3);
         resize(video, temp, temp.size(), INTER_LINEAR);
         std::cout << "Frame: " << std::endl << temp << std::endl;
+        // **********Display Test End********** //
+        
+        
+        
         x = 0;                                              //Reset to first pixel again
         y = 0;
         
