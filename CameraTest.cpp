@@ -39,7 +39,7 @@ Tester::Tester() {
     
 }
 
-bool Object::display(int duration) {
+bool Tester::display(int duration) {
     std::cout << "Displaying for " << duration << "s:\n";
     timeval tb, te;
     gettimeofday(&tb, NULL);
