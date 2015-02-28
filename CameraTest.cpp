@@ -19,8 +19,7 @@ using namespace cv;
 
 class Tester {
     VideoCapture cap;                        //Initalize camera
-    int window_width, window_height;
-    Mat capture, object;                    //Image containers
+    Mat capture;                    //Image containers
     
 public:
     Tester();
@@ -30,7 +29,6 @@ public:
 Tester::Tester() {
     std::cout << "Finding camera" << std::endl;
     VideoCapture tempCap(0);
-    tempCap.getSupported
     tempCap.set(CV_CAP_PROP_FRAME_WIDTH,320);
     tempCap.set(CV_CAP_PROP_FRAME_HEIGHT,240);
     cap = tempCap;
