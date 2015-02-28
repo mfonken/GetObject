@@ -124,8 +124,8 @@ bool Object::getObject(int duration, char& characterList) {
         // **********Display Test Start********** //
         Mat sizeMat(50, 50,  CV_8UC3), temp;
         resize(video, sizeMat, sizeMat.size(), INTER_LINEAR);
-        //cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
-        std::cout << "Frame: " << std::endl << sizeMat << std::endl;
+        cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
+        std::cout << "Frame: " << std::endl << temp << std::endl;
         // **********Display Test End********** //
         x = 0;                                              //Reset to first pixel again
         y = 0;
