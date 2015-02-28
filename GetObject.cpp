@@ -124,7 +124,7 @@ bool Object::getObject(int duration, char& characterList) {
         
         
         // **********Display Test Start********** //
-        Mat sizeMat(10, 10,  CV_8UC3), temp;
+        Mat sizeMat(50, 50,  CV_8UC3), temp;
         resize(capture, sizeMat, sizeMat.size(), INTER_LINEAR);
         cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
         std::cout << "Frame: " << std::endl << temp << std::endl;
