@@ -47,6 +47,9 @@ bool Tester::display(int duration) {
     gettimeofday(&te, NULL);
     while ((double)(te.tv_sec - tb.tv_sec) < duration) {
         cap >> capture;
+        Mat temp(10, 10,  CV_8UC3);
+        resize(capture, temp, temp.size(), INTER_LINEAR);
+        
         std::cout << "Frame: " << std::endl << capture << std::endl;
     }
 }
