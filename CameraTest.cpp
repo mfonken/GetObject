@@ -20,7 +20,7 @@ class Tester {
     
 public:
     Tester();
-    bool display(int)
+    bool display(int);
 };
 
 Tester::Tester() {
