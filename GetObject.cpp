@@ -57,9 +57,9 @@ Object::Object() {
 
     last_char = '~';                        //characters last ('~' acts as null)
     
-    offset = 50;
+    offset = 10;
     
-    samp = 100;                             //sample attributes - cropped immediately after contrast filtering to B&W
+    samp = 50;                             //sample attributes - cropped immediately after contrast filtering to B&W
     samp_window_width = 300 < temp.cols ? 300:temp.cols;                //sample frame is centered
     samp_window_height = 300 < temp.rows ? 300:temp.rows;
     samp_interval = 50;
@@ -88,6 +88,7 @@ void Object::getAverage() {
     avg[0] /= samp;                                      //...and divide by length to get average
     avg[1] /= samp;
     avg[2] /= samp;
+    std::cout << "Background is (" << avg[0] << ", " << avg[1] << ", " << avg[2] << ")" << std::endl;
     gettimeofday(&te, NULL);
     duration = (te.tv_sec - tb.tv_sec) * 1000;      // sec to ms
     duration += (te.tv_usec - tb.tv_usec) / 1000.0;
