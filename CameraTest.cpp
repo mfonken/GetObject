@@ -5,9 +5,6 @@
 //  Created by Matthew Fonken on 1/23/15.
 //  Copyright (c) 2015 Matthew Fonken. All rights reserved.
 //
-
-#include "Scan.cpp"
-#include "CheckObject.cpp"
 #include <fstream>
 #include <iostream>
 #include "opencv2/imgproc/imgproc.hpp"
