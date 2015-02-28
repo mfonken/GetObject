@@ -38,6 +38,7 @@ public:
 Object::Object() {
     std::cout << "Finding camera" << std::endl;
     VideoCapture tempCap(0);
+    tempCap.getSupported
     tempCap.set(CV_CAP_PROP_FRAME_WIDTH,320);
     tempCap.set(CV_CAP_PROP_FRAME_HEIGHT,240);
     cap = tempCap;
