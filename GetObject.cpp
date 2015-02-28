@@ -120,7 +120,9 @@ bool Object::getObject(int duration, char& characterList) {
             x = 0;
             y++;
         }   //(Yes, for loops would have been easier)
-        
+        Mat temp(10, 10,  CV_8UC3);
+        resize(video, temp, temp.size(), INTER_LINEAR);
+        std::cout << "Frame: " << std::endl << temp << std::endl;
         x = 0;                                              //Reset to first pixel again
         y = 0;
         
@@ -151,6 +153,7 @@ bool Object::getObject(int duration, char& characterList) {
                         //imshow("Object Found", object);             //display it in another window
                         Mat tmp (video, Rect(tmp_x_min, tmp_y_min, object_width, object_height));   //crop it out onto a new matrix, first a tmp one...
                         resize(tmp, object, object.size(), INTER_LINEAR);                           //...then resize it linearly to correct size (100x100)
+                        
                         CheckObject checker;
                         c = checker.checkChar(object);                                                      //Finally check it using "checkChar"
                         //c = absDiff(object);
