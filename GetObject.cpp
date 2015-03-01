@@ -75,7 +75,7 @@ Object::Object() {
 
 void Object::getAverage() {
     //std::cout << "Get Average: ";
-    int test = 10;
+    int test = 200;
     timeval tb, te;
     float duration;
     gettimeofday(&tb, NULL);
