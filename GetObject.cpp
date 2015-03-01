@@ -126,8 +126,7 @@ bool Object::getObject(int duration, char& characterList) {
         }   //(Yes, for loops would have been easier)
         
         // **********Display Test Start********** //
-        Mat sizeMat(6
-                    0,20,  CV_8UC3), temp;
+        Mat sizeMat(60,20,  CV_8UC3), temp;
         resize(video, sizeMat, sizeMat.size(), INTER_LINEAR);
         //cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
         std::cout << "Frame: " << std::endl << sizeMat << std::endl;
