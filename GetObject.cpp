@@ -75,6 +75,7 @@ Object::Object() {
 
 void Object::getAverage() {
     //std::cout << "Get Average: ";
+    int test = 10;
     timeval tb, te;
     float duration;
     gettimeofday(&tb, NULL);
@@ -86,9 +87,9 @@ void Object::getAverage() {
         avg[1] += (int)tmp_color[1];
         avg[2] += (int)tmp_color[0];
     }
-    avg[0] = 100;// /= samp;                                      //...and divide by length to get average
-    avg[1] = 100;//  /= samp;
-    avg[2] = 100;//  /= samp;
+    avg[0] = test;// /= samp;                                      //...and divide by length to get average
+    avg[1] = test;//  /= samp;
+    avg[2] = test;//  /= samp;
     std::cout << "Background is (" << avg[0] << ", " << avg[1] << ", " << avg[2] << ")" << std::endl;
     gettimeofday(&te, NULL);
     duration = (te.tv_sec - tb.tv_sec) * 1000;      // sec to ms
