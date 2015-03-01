@@ -86,9 +86,9 @@ void Object::getAverage() {
         avg[1] += (int)tmp_color[1];
         avg[2] += (int)tmp_color[0];
     }
-    avg[0] /= samp;                                      //...and divide by length to get average
-    avg[1] /= samp;
-    avg[2] /= samp;
+    avg[0] = 100;// /= samp;                                      //...and divide by length to get average
+    avg[1] = 100;//  /= samp;
+    avg[2] = 100;//  /= samp;
     std::cout << "Background is (" << avg[0] << ", " << avg[1] << ", " << avg[2] << ")" << std::endl;
     gettimeofday(&te, NULL);
     duration = (te.tv_sec - tb.tv_sec) * 1000;      // sec to ms
