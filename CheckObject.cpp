@@ -42,7 +42,7 @@ char CheckObject::checkChar(Mat &obj) {                              //Receives 
             }
         }
         float match = (float)match_count/(100*100);     //Generate % match from the scan counter
-        //cout << "% match on " << charList.at(index) << " is " << match << endl;
+        //std::cout << "% match on " << charList.at(index) << " is " << match << std::endl;
         char c;
         if (match > match_thresh) {                     //If % match is above the given threshhold
             c = charList.at(index);                     //Get actual character from the charList of the match

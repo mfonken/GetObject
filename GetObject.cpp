@@ -25,6 +25,7 @@ class Object {
     int offset, samp, samp_window_width, samp_window_height, samp_interval;
     int object_width_min, object_width_max, object_height_min, object_height_max;
     int diff_thresh;
+    int scan_y_offset; 
     Mat capture, object;                    //Image containers
     int avg[3];
     
@@ -37,11 +38,11 @@ public:
 
 Object::Object() {
     std::cout << "Finding camera" << std::endl;
-    VideoCapture tempCap(0);
+    VideoCapture tempCap(-1);
 //    tempCap.getSupportedPreviewSizes();
     tempCap.set(CV_CAP_PROP_FRAME_WIDTH,320);
     tempCap.set(CV_CAP_PROP_FRAME_HEIGHT,240);
-    tempCap.set(CV_CAP_PROP_BRIGHTNESS, 255.0);
+    //tempCap.set(CV_CAP_PROP_BRIGHTNESS, 1.0);
     //tempCap.set(CV_CAP_PROP_CONTRAST, 100.0);
     cap = tempCap;
     Mat tempObject(100, 100,  CV_8UC3);
@@ -58,9 +59,9 @@ Object::Object() {
 
     last_char = '~';                        //characters last ('~' acts as null)
     
-    offset = 45;
+    offset = 0;
     
-    samp = 50;                             //sample attributes - cropped immediately after contrast filtering to B&W
+    samp = 10;                             //sample attributes - cropped immediately after contrast filtering to B&W
     samp_window_width = 300 < temp.cols ? 300:temp.cols;                //sample frame is centered
     samp_window_height = 300 < temp.rows ? 300:temp.rows;
     samp_interval = 50;
@@ -70,7 +71,9 @@ Object::Object() {
     object_height_min =  30;
     object_height_max =  500;
     
-    diff_thresh = 10;                      //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
+    diff_thresh = 200;                      //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
+
+    scan_y_offset = 0;
 }
 
 void Object::getAverage() {
@@ -118,21 +121,24 @@ bool Object::getObject(int duration, char& characterList) {
         y = 0;
         while (y < video.size().height) {                   //Dual loop scans row from top to bottom, setting pixels to BGR to B&W based off distance from avgs
             while (x < video.size().width) {                //white if similar, black if unique
-                video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) > diff_thresh) ? Vec3b(7,7,7):Vec3b(0,0,0);
-                x++;
+                //video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) > diff_thresh) ? Vec3b(1,1,1):Vec3b(0,0,0);
+                video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) < diff_thresh) ? Vec3b(255,255,255):Vec3b(0,0,0);
+        	x++;
             }
             x = 0;
             y++;
         }   //(Yes, for loops would have been easier)
         
         // **********Display Test Start********** //
-        Mat sizeMat(60,20,  CV_8UC3), temp;
+        /*
+ 	Mat sizeMat(30,30,  CV_8UC3), temp;
         resize(video, sizeMat, sizeMat.size(), INTER_LINEAR);
-        //cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
-        std::cout << "Frame: " << std::endl << sizeMat << std::endl;
-        // **********Display Test End********** //
+        cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
+        std::cout << "Frame: " << std::endl << temp << std::endl;
+        */
+	// **********Display Test End********** //
         x = 0;                                              //Reset to first pixel again
-        y = 0;
+        y = scan_y_offset;
         
         char c = '~';                                       //Reset character variable to '~' which acts as null
         
@@ -156,13 +162,14 @@ bool Object::getObject(int duration, char& characterList) {
                     //If it fits the defined possible object size...
                     if (object_width > object_width_min && object_width < object_width_max && object_height > object_height_min && object_height < object_height_max) {
                         
-                        rectangle(video, Point(tmp_x_min, tmp_y_min), Point(tmp_x_min+object_width, tmp_y_min+object_height), Scalar(0,255,0)); //draw a rectangle over it
-                        //cout << "Rectangle made at (" << x-tmp_x_min << ", " << y-tmp_y_min << ")" << endl;
+                        //rectangle(video, Point(tmp_x_min, tmp_y_min), Point(tmp_x_min+object_width, tmp_y_min+object_height), Scalar(0,255,0)); //draw a rectangle over it
+                        std::cout << "Rectangle made at (" << tmp_x_min << ", " << tmp_y_min << ")" << std::endl;
                         //imshow("Object Found", object);             //display it in another window
                         Mat tmp (video, Rect(tmp_x_min, tmp_y_min, object_width, object_height));   //crop it out onto a new matrix, first a tmp one...
                         resize(tmp, object, object.size(), INTER_LINEAR);                           //...then resize it linearly to correct size (100x100)
-                        
+                        //cv::cvtColor(object,object, CV_BGR2BW);
                         CheckObject checker;
+			//std::cout << object << std::endl;
                         c = checker.checkChar(object);                                                      //Finally check it using "checkChar"
                         //c = absDiff(object);
                         if (c != '~')
@@ -196,8 +203,17 @@ bool Object::getObject(int duration, char& characterList) {
 }
 
 float Object::getDiff(Mat &video, int &x, int &y, int* background) { //As described above, this is a literal distance formula, given r, g, and b are used as base references
+    
     Vec3b tmp_color = video.at<cv::Vec3b>(Point(x,y));
-    return (tmp_color[2] - background[0] + tmp_color[1] - background[1] + tmp_color[0] - background[2]);
+    int tmp_diff = abs(tmp_color[2] - background[0]) + abs(tmp_color[1] - background[1]) + abs(tmp_color[0] - background[2]);
+    return tmp_diff;
+    /*
+    int tmp_total = tmp_color[0] + tmp_color[1] + tmp_color[2];
+    float scaling_factor = 3*255/tmp_total;
+    int greyness = abs(255 - tmp_color[0]*scaling_factor) + abs(255 - tmp_color[1]*scaling_factor) + abs(255 - tmp_color[2]*scaling_factor);
+    */
 }
 
-    
+float abs(float n) {
+   return (n > 0 ? n:-n);
+}

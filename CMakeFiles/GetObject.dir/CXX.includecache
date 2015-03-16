@@ -6,6 +6,20 @@
 
 #IncludeRegexTransform: 
 
+/home/debian/Desktop/GetObject/CameraTest.cpp
+fstream
+-
+iostream
+-
+opencv2/imgproc/imgproc.hpp
+/home/debian/Desktop/GetObject/opencv2/imgproc/imgproc.hpp
+opencv2/highgui/highgui.hpp
+/home/debian/Desktop/GetObject/opencv2/highgui/highgui.hpp
+string
+-
+sys/time.h
+-
+
 /home/debian/Desktop/GetObject/CheckObject.cpp
 stdio.h
 -
@@ -47,4 +61,6 @@ iostream
 -
 GetObject.cpp
 /home/debian/Desktop/GetObject/GetObject.cpp
+CameraTest.cpp
+/home/debian/Desktop/GetObject/CameraTest.cpp
 
