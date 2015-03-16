@@ -93,7 +93,7 @@ void Object::getAverage() {
     avg[0] /= samp;                                      //...and divide by length to get average
     avg[1] /= samp;
     avg[2] /= samp;
-    std::cout << "Background is (" << avg[0] << ", " << avg[1] << ", " << avg[2] << ")" << std::endl;
+    //std::cout << "Background is (" << avg[0] << ", " << avg[1] << ", " << avg[2] << ")" << std::endl;
     gettimeofday(&te, NULL);
     duration = (te.tv_sec - tb.tv_sec) * 1000;      // sec to ms
     duration += (te.tv_usec - tb.tv_usec) / 1000.0;
@@ -109,7 +109,7 @@ bool Object::getObject(int duration, char& characterList) {
     while ((double)(te.tv_sec - tb.tv_sec) < duration) {
         getAverage();
         counter++;
-        std::cout << "Loop: " << counter << " | " << (te.tv_sec - tb.tv_sec) + (te.tv_usec - tb.tv_usec)/1000000.0 << "s\n";
+        std::cout << "Loop: " << counter << " | " << (te.tv_sec - tb.tv_sec) + (te.tv_usec - tb.tv_usec)/1000000.0 << "s ";
         cap >> capture;
         Mat video(capture, Rect((window_width-samp_window_width)/2,(window_height-samp_window_height)/2, samp_window_width, samp_window_height));
         int tmp_x_min = 0,                                  //Reset object location variables for new scan
@@ -130,12 +130,12 @@ bool Object::getObject(int duration, char& characterList) {
         }   //(Yes, for loops would have been easier)
         
         // **********Display Test Start********** //
-        /*
+/*        
  	Mat sizeMat(30,30,  CV_8UC3), temp;
         resize(video, sizeMat, sizeMat.size(), INTER_LINEAR);
         cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
         std::cout << "Frame: " << std::endl << temp << std::endl;
-        */
+*/        
 	// **********Display Test End********** //
         x = 0;                                              //Reset to first pixel again
         y = scan_y_offset;
@@ -163,7 +163,7 @@ bool Object::getObject(int duration, char& characterList) {
                     if (object_width > object_width_min && object_width < object_width_max && object_height > object_height_min && object_height < object_height_max) {
                         
                         //rectangle(video, Point(tmp_x_min, tmp_y_min), Point(tmp_x_min+object_width, tmp_y_min+object_height), Scalar(0,255,0)); //draw a rectangle over it
-                        std::cout << "Rectangle made at (" << tmp_x_min << ", " << tmp_y_min << ")" << std::endl;
+                        //std::cout << "Rectangle made at (" << tmp_x_min << ", " << tmp_y_min << ")" << std::endl;
                         //imshow("Object Found", object);             //display it in another window
                         Mat tmp (video, Rect(tmp_x_min, tmp_y_min, object_width, object_height));   //crop it out onto a new matrix, first a tmp one...
                         resize(tmp, object, object.size(), INTER_LINEAR);                           //...then resize it linearly to correct size (100x100)
@@ -173,7 +173,7 @@ bool Object::getObject(int duration, char& characterList) {
                         c = checker.checkChar(object);                                                      //Finally check it using "checkChar"
                         //c = absDiff(object);
                         if (c != '~')
-                            std::cout << "Character: " << c << std::endl;
+                            std::cout << "found character: " << c;
                         //return true;
                         goto end_loop;                              //If any object is found, program exits scan, would otherwise check every black pixel
                     }
@@ -198,6 +198,7 @@ bool Object::getObject(int duration, char& characterList) {
             last_char = c;                                          //Finally, set this new character to be the last_char
         }
         gettimeofday(&te, NULL);
+	std::cout << std::endl;
     }
     return false;
 }
