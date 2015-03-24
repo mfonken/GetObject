@@ -25,7 +25,7 @@ public:
 char CheckObject::checkChar(Mat &obj) {                              //Receives only the pointer to image matrix of the object in question
     match_thresh = 0.7;                           //Match threshold, acts as percent
     std::string charList = "ABCDEFGHIJKLMNOPQRSTUVQWXYZ1234567890!@#$%^&*()";   //List of possible objects, each has a corresponding .jpg in the /data folder
-    std::string similarChars[] = {"B8&", "I!", "J1", "OQ0", "S3$", "FE", "CG"};  //Collection of similar characters, add freely to this list
+    std::string similarChars[] = {"B8&S$", "I!", "J1", "OQ0CG6", "FE"};  //Collection of similar characters, add freely to this list
     for (int index = 0; index < charList.length (); index++) {                  //Go through each character starting with 'A'
         std::string path("data/");                      //Create path name
         path += charList.at(index);                     //...
@@ -35,12 +35,14 @@ char CheckObject::checkChar(Mat &obj) {                              //Receives 
         Mat character(img);                             //Translate into a Mat
         //imshow("Character Image", character);
         int match_count = 0;                            //Reset match counter
-        //Mat diff(100, 100,  CV_8UC3);
+        Mat diff(100, 100,  CV_8UC3);
         for (int i_y = 0; i_y < 100; i_y++) {           //Scan through each image starting from the top-left, count literal pixel matches
             for (int i_x = 0; i_x < 100; i_x++) {
                 match_count += (character.at<Vec3b>(Point(i_x,i_y)) == obj.at<Vec3b>(Point(i_x,i_y))) ? 1:0;
+                diff.at<Vec3b>(i_y,i_x) = (character.at<Vec3b>(Point(i_x,i_y)) == obj.at<Vec3b>(Point(i_x,i_y))) ? Vec3b(0,0,255):Vec3b(0,0,0);
             }
         }
+        imshow("Diff",diff);
         float match = (float)match_count/(100*100);     //Generate % match from the scan counter
         //std::cout << "% match on " << charList.at(index) << " is " << match << std::endl;
         char c;

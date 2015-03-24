@@ -150,7 +150,7 @@ bool Object::getObject(int duration, char& characterList) {
                 tmp_y_max = 1;
                 //imshow("Recognize for Debian", video);
                 if ((int)video.at<Vec3b>(Point(x,y))[0] == 0) { //...a black pixel is found
-                    //circle(video, Point(x,y), 2, Scalar(0,0,255), 3, 8, 0);
+                    circle(video, Point(x,y), 2, Scalar(0,0,255), 3, 8, 0);
                     Scan scanner;
                     tmp_x_min = (int)scanner.scan(video, 'x', x, y);        //Possible object, scan all directions from this point
                     tmp_x_max = (int)scanner.scan(video, 'X', x, y);        //for continuity to find full object
@@ -162,7 +162,7 @@ bool Object::getObject(int duration, char& characterList) {
                     //If it fits the defined possible object size...
                     if (object_width > object_width_min && object_width < object_width_max && object_height > object_height_min && object_height < object_height_max) {
                         
-                        //rectangle(video, Point(tmp_x_min, tmp_y_min), Point(tmp_x_min+object_width, tmp_y_min+object_height), Scalar(0,255,0)); //draw a rectangle over it
+                        rectangle(video, Point(tmp_x_min, tmp_y_min), Point(tmp_x_min+object_width, tmp_y_min+object_height), Scalar(0,255,0)); //draw a rectangle over it
                         //std::cout << "Rectangle made at (" << tmp_x_min << ", " << tmp_y_min << ")" << std::endl;
                         //imshow("Object Found", object);             //display it in another window
                         Mat tmp (video, Rect(tmp_x_min, tmp_y_min, object_width, object_height));   //crop it out onto a new matrix, first a tmp one...
@@ -184,7 +184,7 @@ bool Object::getObject(int duration, char& characterList) {
             y+=samp_interval;
         }
     end_loop:
-        //imshow("Filtered", video);                      //End of loop, below is where the string of found chars and "character.txt" are managed
+        imshow("Filtered", video);                      //End of loop, below is where the string of found chars and "character.txt" are managed
         
         if (c != last_char && c != '~') {                           //If a different character is found (and not a '~' local null), c and last_char while be different...
             bool exists = false;                                    //reset temporary flag
