@@ -66,7 +66,7 @@ Object::Object() {
     samp_window_height = 300 < temp.rows ? 300:temp.rows;
     samp_interval = 50;
     
-    object_width_min =  10;                 //object attributes - frame of expected object to be found
+    object_width_min =  5;                 //object attributes - frame of expected object to be found
     object_width_max =  500;                //only max and min of width and height
     object_height_min =  30;
     object_height_max =  500;
