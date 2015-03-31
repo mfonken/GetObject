@@ -18,14 +18,14 @@ class CheckObject {
     int best_index;
     char c;
 public:
-    char checkChar(Mat&);
-    char checkSimilar(Mat&,std::string);
+    char checkChar(Mat&, double);
+    char checkSimilar(Mat&,std::string, double);
 };
 
-char CheckObject::checkChar(Mat &obj) {                              //Receives only the pointer to image matrix of the object in question
+char CheckObject::checkChar(Mat &obj, double character_ratio) {                              //Receives only the pointer to image matrix of the object in question
     match_thresh = 0.7;                           //Match threshold, acts as percent
     std::string charList = "ABCDEFGHIJKLMNOPQRSTUVQWXYZ1234567890!@#$%^&*()";   //List of possible objects, each has a corresponding .jpg in the /data folder
-    std::string similarChars[] = {"B8&S$", "I!", "J1", "OQ0CG6", "FE"};  //Collection of similar characters, add freely to this list
+    std::string similarChars[] = {"A^",  "B8&S$", "I!", "J1", "OQ0CG6UH", "FELP"};  //Collection of similar characters, add freely to this list
     for (int index = 0; index < charList.length (); index++) {                  //Go through each character starting with 'A'
         std::string path("data/");                      //Create path name
         path += charList.at(index);                     //...
@@ -53,7 +53,7 @@ char CheckObject::checkChar(Mat &obj) {                              //Receives 
                 //cout << "Current is " << similarChars[s] << endl;
                 for (int k = 0; k < similarChars[s].length(); k++) {
                     if (c == similarChars[s].at(k))     //If the character found is in the list, send it to the checkSimilar function
-                        c = checkSimilar(obj, similarChars[s]);
+                        c = checkSimilar(obj, similarChars[s], character_ratio);
                 }
             }
             return c;   //If there are no similar characters to worry about, return as a literal char
@@ -66,7 +66,7 @@ char CheckObject::checkChar(Mat &obj) {                              //Receives 
 }
 
 // ********************checkSimilar************************ //
-char CheckObject::checkSimilar(Mat &obj, std::string checkList) {    //Receives both the point to the object image matrix and a string of similar chars to check
+char CheckObject::checkSimilar(Mat &obj, std::string checkList, double character_ratio) {    //Receives both the point to the object image matrix and a string of similar chars to check
     //cout << "Check list: " << checkList << endl;
     best_match = 0.0;
     best_index = 0;
@@ -88,6 +88,10 @@ char CheckObject::checkSimilar(Mat &obj, std::string checkList) {    //Receives 
             best_match = match_count;
             best_index = x;
         }
+    }
+    //std::cout << "Ratio is " << character_ratio << " for " << checkList.at(best_index) << std::endl;
+    if (checkList.at(best_index) == '0' || checkList.at(best_index) == 'O') {
+        return (character_ratio > 1.2) ? '0':'O';
     }
     return checkList.at(best_index);                //...and is return as a literal char
 }

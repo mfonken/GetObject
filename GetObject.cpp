@@ -64,7 +64,7 @@ Object::Object() {
     samp = 10;                             //sample attributes - cropped immediately after contrast filtering to B&W
     samp_window_width = 300 < temp.cols ? 300:temp.cols;                //sample frame is centered
     samp_window_height = 300 < temp.rows ? 300:temp.rows;
-    samp_interval = 50;
+    samp_interval = 30;
     
     object_width_min =  5;                 //object attributes - frame of expected object to be found
     object_width_max =  500;                //only max and min of width and height
@@ -170,7 +170,7 @@ bool Object::getObject(int duration, char& characterList) {
                         //cv::cvtColor(object,object, CV_BGR2BW);
                         CheckObject checker;
 			//std::cout << object << std::endl;
-                        c = checker.checkChar(object);                                                      //Finally check it using "checkChar"
+                        c = checker.checkChar(object, (float)object_height/(float)object_width);                                                      //Finally check it using "checkChar"
                         //c = absDiff(object);
                         if (c != '~')
                             std::cout << "found character: " << c;
