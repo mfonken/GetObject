@@ -216,5 +216,5 @@ float Object::getDiff(Mat &video, int &x, int &y, int* background) { //As descri
 }
 
 float abs(float n) {
-   return (n > 0 ? n:-n);
+   return (n > 0 ? n:0);
 }
