@@ -208,7 +208,7 @@ bool Object::getObject(int duration, char& characterList) {
 float Object::getDiff(Mat &video, int &x, int &y, int* background) { //As described above, this is a literal distance formula, given r, g, and b are used as base references
     
     Vec3b tmp_color = video.at<cv::Vec3b>(Point(x,y));
-    int tmp_diff = abs(tmp_color[2] - background[0]) + abs(tmp_color[1] - background[1]) + abs(tmp_color[0] - background[2]);
+    int tmp_diff = abs(background[0] - tmp_color[2]) + abs(background[2] - tmp_color[0]);
     return tmp_diff;
     /*
     int tmp_total = tmp_color[0] + tmp_color[1] + tmp_color[2];
