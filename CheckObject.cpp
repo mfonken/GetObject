@@ -42,7 +42,7 @@ char CheckObject::checkChar(Mat &obj, double character_ratio) {                 
                 diff.at<Vec3b>(i_y,i_x) = (character.at<Vec3b>(Point(i_x,i_y)) == obj.at<Vec3b>(Point(i_x,i_y))) ? Vec3b(0,0,255):Vec3b(0,0,0);
             }
         }
-        imshow("Diff",diff);
+        //imshow("Diff",diff);
         float match = (float)match_count/(100*100);     //Generate % match from the scan counter
         //std::cout << "% match on " << charList.at(index) << " is " << match << std::endl;
         char c;
