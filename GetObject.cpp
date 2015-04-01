@@ -83,7 +83,9 @@ void Object::getAverage() {
     float duration;
     gettimeofday(&tb, NULL);
     cap >> capture;
-    memset(avg, 0, sizeof(3));
+    avg[0] = 0;                                      //...and divide by length to get average
+    avg[1] = 0;
+    avg[2] = 0;
     for (int i = offset; i < samp+offset; i++) {        //Samples on a diagonal from top-left corner plus offset down size of "samp"
         Vec3b tmp_color = capture.at<Vec3b>(Point(i,offset));   //Add up each color channel...
         avg[0] += (int)tmp_color[2];
