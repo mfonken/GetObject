@@ -130,12 +130,12 @@ bool Object::getObject(int duration, char& characterList) {
         }   //(Yes, for loops would have been easier)
         
         // **********Display Test Start********** //
-/*        
+       
  	Mat sizeMat(30,30,  CV_8UC3), temp;
         resize(video, sizeMat, sizeMat.size(), INTER_LINEAR);
         cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
         std::cout << "Frame: " << std::endl << temp << std::endl;
-*/        
+ 
 	// **********Display Test End********** //
         x = 0;                                              //Reset to first pixel again
         y = scan_y_offset;
@@ -184,7 +184,7 @@ bool Object::getObject(int duration, char& characterList) {
             y+=samp_interval;
         }
     end_loop:
-        imshow("Filtered", video);                      //End of loop, below is where the string of found chars and "character.txt" are managed
+        //imshow("Filtered", video);                      //End of loop, below is where the string of found chars and "character.txt" are managed
         
         if (c != last_char && c != '~') {                           //If a different character is found (and not a '~' local null), c and last_char while be different...
             bool exists = false;                                    //reset temporary flag
