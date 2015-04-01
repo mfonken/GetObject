@@ -66,12 +66,12 @@ Object::Object() {
     samp_window_height = 300 < temp.rows ? 300:temp.rows;
     samp_interval = 30;
     
-    object_width_min =  5;                 //object attributes - frame of expected object to be found
+    object_width_min =  5;                  //object attributes - frame of expected object to be found
     object_width_max =  300;                //only max and min of width and height
     object_height_min =  30;
     object_height_max =  200;
     
-    diff_thresh = 200;                      //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
+    diff_thresh = 20;                       //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
 
     scan_y_offset = 0;
 }
@@ -208,7 +208,7 @@ bool Object::getObject(int duration, char& characterList) {
 float Object::getDiff(Mat &video, int &x, int &y, int* background) { //As described above, this is a literal distance formula, given r, g, and b are used as base references
     
     Vec3b tmp_color = video.at<cv::Vec3b>(Point(x,y));
-    int tmp_diff = abs(background[0] - tmp_color[2]) + abs(background[2] - tmp_color[0]);
+    int tmp_diff = abs(background[2] - tmp_color[0]);
     return tmp_diff;
     /*
     int tmp_total = tmp_color[0] + tmp_color[1] + tmp_color[2];
