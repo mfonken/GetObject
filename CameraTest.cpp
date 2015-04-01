@@ -52,4 +52,5 @@ bool Tester::display(int duration) {
         std::cout << "Frame: " << std::endl << temp << std::endl;
         gettimeofday(&te, NULL);
     }
+    return true;
 }

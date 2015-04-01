@@ -32,9 +32,9 @@ float Scan::scan(Mat& video, char dir, int &x, int &y) {
     scan_size_x_max = 100;      //x is left
     scan_size_y_max = 100;      //X is right
     scan_size_X_max = 200;      //y is up
-    scan_size_Y_max = 300;      //Y is down
-    scan_thresh = 15;           //Number of required black pixels per line scan - if less, scan is "blank" and gap count is incremented
-    gap_thresh = 2;             //Number of consecutive blank scans allowed
+    scan_size_Y_max = 400;      //Y is down
+    scan_thresh = 7;           //Number of required black pixels per line scan - if less, scan is "blank" and gap count is incremented
+    gap_thresh = 3;             //Number of consecutive blank scans allowed
     gap_count = 0;              //Blank scan counter
     switch(dir) {
         case 'x':
@@ -48,8 +48,10 @@ float Scan::scan(Mat& video, char dir, int &x, int &y) {
                     gap_count++;
                 else
                     gap_count = 0;                              //Else reset, only checks consecutive blank scans
-                if (gap_count > gap_thresh)                     //If there is a gap, the gap flag is set, the loop ends and the current tmp_x is returned
-                    gap = true;                                 //This is the same basic algorithm for each direction
+                if (gap_count > gap_thresh) {                   //If there is a gap, the gap flag is set, the loop ends and the current tmp_x is returned
+                    tmp_x+=gap_thresh;
+                    gap = true;
+                }       //This is the same basic algorithm for each direction
             }
             return tmp_x;
         case 'X':   //right
@@ -63,8 +65,10 @@ float Scan::scan(Mat& video, char dir, int &x, int &y) {
                     gap_count++;
                 else
                     gap_count = 0;
-                if (gap_count > gap_thresh)
+                if (gap_count > gap_thresh) {
+                    tmp_x-=gap_thresh;
                     gap = true;
+                }
             }
             return tmp_x;
         case 'y':   //up
@@ -78,8 +82,10 @@ float Scan::scan(Mat& video, char dir, int &x, int &y) {
                     gap_count++;
                 else
                     gap_count = 0;
-                if (gap_count > gap_thresh)
+                if (gap_count > gap_thresh) {
+                    tmp_y+=gap_thresh;
                     gap = true;
+                }
             }
             return tmp_y;
         case 'Y':   //down
@@ -93,8 +99,10 @@ float Scan::scan(Mat& video, char dir, int &x, int &y) {
                     gap_count++;
                 else
                     gap_count = 0;
-                if (gap_count > gap_thresh)
+                if (gap_count > gap_thresh+12) {
+                    tmp_y-=gap_thresh+12;
                     gap = true;
+                }
             }
             return tmp_y;
         default:
