@@ -67,9 +67,9 @@ Object::Object() {
     samp_interval = 30;
     
     object_width_min =  5;                 //object attributes - frame of expected object to be found
-    object_width_max =  500;                //only max and min of width and height
+    object_width_max =  300;                //only max and min of width and height
     object_height_min =  30;
-    object_height_max =  500;
+    object_height_max =  200;
     
     diff_thresh = 200;                      //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
 
@@ -93,7 +93,7 @@ void Object::getAverage() {
     avg[0] /= samp;                                      //...and divide by length to get average
     avg[1] /= samp;
     avg[2] /= samp;
-    //std::cout << "Background is (" << avg[0] << ", " << avg[1] << ", " << avg[2] << ")" << std::endl;
+    std::cout << "Background is (" << avg[0] << ", " << avg[1] << ", " << avg[2] << ")" << std::endl;
     gettimeofday(&te, NULL);
     duration = (te.tv_sec - tb.tv_sec) * 1000;      // sec to ms
     duration += (te.tv_usec - tb.tv_usec) / 1000.0;
