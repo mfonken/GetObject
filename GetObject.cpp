@@ -33,7 +33,7 @@ public:
     Object();
     void getAverage();
     bool getObject(int, char&);
-    float getDiff(Mat&, int&, int&,int*);
+    int  getDiff(Mat&, int&, int&,int*);
 };
 
 Object::Object() {
@@ -71,7 +71,7 @@ Object::Object() {
     object_height_min =  30;
     object_height_max =  200;
     
-    diff_thresh = 50;                       //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
+    diff_thresh = 500;                       //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
 
     scan_y_offset = 0;
 }
@@ -132,12 +132,12 @@ bool Object::getObject(int duration, char& characterList) {
         }   //(Yes, for loops would have been easier)
         
         // **********Display Test Start********** //
-        /*   
+           
         Mat sizeMat(30,30,  CV_8UC3), temp;
         resize(video, sizeMat, sizeMat.size(), INTER_LINEAR);
         cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
         std::cout << "Frame: " << std::endl << temp << std::endl;
- 	*/
+ 	
 	// **********Display Test End********** //
         x = 0;                                              //Reset to first pixel again
         y = scan_y_offset;
@@ -205,7 +205,7 @@ bool Object::getObject(int duration, char& characterList) {
     return false;
 }
 
-float Object::getDiff(Mat &video, int &x, int &y, int* background) { //As described above, this is a literal distance formula, given r, g, and b are used as base references
+int  Object::getDiff(Mat &video, int &x, int &y, int* background) { //As described above, this is a literal distance formula, given r, g, and b are used as base references
     
     Vec3b tmp_color = video.at<cv::Vec3b>(Point(x,y));
     //int tmp_diff = abs(background[2] - tmp_color[0]);
@@ -214,7 +214,7 @@ float Object::getDiff(Mat &video, int &x, int &y, int* background) { //As descri
     int tmp_total = tmp_color[0] + tmp_color[1] + tmp_color[2];
     float scaling_factor = 3*255/tmp_total;
     int greyness = abs(255 - tmp_color[0]*scaling_factor) + abs(255 - tmp_color[1]*scaling_factor) + abs(255 - tmp_color[2]*scaling_factor);
-    std::cout << "O:" << greyness << std::endl;
+    //std::cout << "O:" << greyness << std::endl;
     return greyness;
 }
 
