@@ -33,7 +33,7 @@ public:
     Object();
     void getAverage();
     bool getObject(int, char&);
-    int  getDiff(Mat&, int&, int&,int*);
+    double getDiff(Mat&, int&, int&,int*);
 };
 
 Object::Object() {
@@ -71,7 +71,7 @@ Object::Object() {
     object_height_min =  30;
     object_height_max =  200;
     
-    diff_thresh = 500;                       //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
+    diff_thresh = 100;                       //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
 
     scan_y_offset = 0;
 }
@@ -83,9 +83,11 @@ void Object::getAverage() {
     float duration;
     gettimeofday(&tb, NULL);
     cap >> capture;
+    
     avg[0] = 0;                                      //...and divide by length to get average
     avg[1] = 0;
     avg[2] = 0;
+    /*
     for (int i = offset; i < samp+offset; i++) {        //Samples on a diagonal from top-left corner plus offset down size of "samp"
         Vec3b tmp_color = capture.at<Vec3b>(Point(offset,i));   //Add up each color channel...
         avg[0] += (int)tmp_color[2];
@@ -95,6 +97,7 @@ void Object::getAverage() {
     avg[0] /= samp;                                      //...and divide by length to get average
     avg[1] /= samp;
     avg[2] /= samp;
+     */
     std::cout << "Background is (" << avg[0] << ", " << avg[1] << ", " << avg[2] << ")" << std::endl;
     gettimeofday(&te, NULL);
     duration = (te.tv_sec - tb.tv_sec) * 1000;      // sec to ms
@@ -124,7 +127,7 @@ bool Object::getObject(int duration, char& characterList) {
         while (y < video.size().height) {                   //Dual loop scans row from top to bottom, setting pixels to BGR to B&W based off distance from avgs
             while (x < video.size().width) {                //white if similar, black if unique
                 //video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) > diff_thresh) ? Vec3b(1,1,1):Vec3b(0,0,0);
-                video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) < diff_thresh) ? Vec3b(255,255,255):Vec3b(0,0,0);
+                video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) < diff_thresh) ? Vec3b(0,0,0):Vec3b(255,255,255);
         	x++;
             }
             x = 0;
@@ -132,12 +135,12 @@ bool Object::getObject(int duration, char& characterList) {
         }   //(Yes, for loops would have been easier)
         
         // **********Display Test Start********** //
-           
+          /*
         Mat sizeMat(30,30,  CV_8UC3), temp;
         resize(video, sizeMat, sizeMat.size(), INTER_LINEAR);
         cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
         std::cout << "Frame: " << std::endl << temp << std::endl;
- 	
+ 	*/
 	// **********Display Test End********** //
         x = 0;                                              //Reset to first pixel again
         y = scan_y_offset;
@@ -186,7 +189,7 @@ bool Object::getObject(int duration, char& characterList) {
             y+=samp_interval;
         }
     end_loop:
-        //imshow("Filtered", video);                      //End of loop, below is where the string of found chars and "character.txt" are managed
+        imshow("Filtered", video);                      //End of loop, below is where the string of found chars and "character.txt" are managed
         
         if (c != last_char && c != '~') {                           //If a different character is found (and not a '~' local null), c and last_char while be different...
             bool exists = false;                                    //reset temporary flag
@@ -205,19 +208,20 @@ bool Object::getObject(int duration, char& characterList) {
     return false;
 }
 
-int  Object::getDiff(Mat &video, int &x, int &y, int* background) { //As described above, this is a literal distance formula, given r, g, and b are used as base references
+double Object::getDiff(Mat &video, int &x, int &y, int* background) { //As described above, this is a literal distance formula, given r, g, and b are used as base references
     
     Vec3b tmp_color = video.at<cv::Vec3b>(Point(x,y));
     //int tmp_diff = abs(background[2] - tmp_color[0]);
     //return tmp_diff;
-    
-    int tmp_total = tmp_color[0] + tmp_color[1] + tmp_color[2];
-    float scaling_factor = 3*255/tmp_total;
-    int greyness = abs(255 - tmp_color[0]*scaling_factor) + abs(255 - tmp_color[1]*scaling_factor) + abs(255 - tmp_color[2]*scaling_factor);
+   
+    //std::cout << "O:" << (int)tmp_color[0] << std::endl;
+    int tmp_total = tmp_color[0] + tmp_color[1] + tmp_color[2] + 1;
+    double scaling_factor = 3*255/tmp_total;
+    double greyness = abs(tmp_color[0]-tmp_color[2])+abs(tmp_color[2]-tmp_color[1])+abs(tmp_color[1]-tmp_color[0]);
+    //abs(255 - tmp_color[0]*scaling_factor) + abs(255 - tmp_color[1]*scaling_factor) + abs(255 - tmp_color[2]*scaling_factor);
     //std::cout << "O:" << greyness << std::endl;
     return greyness;
 }
-
-float abs(float n) {
+double abs(double n) {
    return (n > 0 ? n:-n);
 }
