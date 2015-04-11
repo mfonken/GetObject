@@ -42,8 +42,8 @@ Object::Object() {
 //    tempCap.getSupportedPreviewSizes();
     tempCap.set(CV_CAP_PROP_FRAME_WIDTH,320);
     tempCap.set(CV_CAP_PROP_FRAME_HEIGHT,240);
-    //tempCap.set(CV_CAP_PROP_BRIGHTNESS, 1.0);
-    //tempCap.set(CV_CAP_PROP_CONTRAST, 100.0);
+    tempCap.set(CV_CAP_PROP_BRIGHTNESS, 1.0);
+    tempCap.set(CV_CAP_PROP_CONTRAST, 100.0);
     cap = tempCap;
     Mat tempObject(100, 100,  CV_8UC3);
     object = tempObject;
@@ -141,7 +141,7 @@ bool Object::getObject(int duration, char& characterList, Mat& matList, int thre
         resize(video, sizeMat, sizeMat.size(), INTER_LINEAR);
         cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
         std::cout << "Frame: " << std::endl << temp << std::endl;
- 	
+        
 	// **********Display Test End********** //
         x = video.size().width/2;                                              //Reset to first pixel again
         y = video.size().height/2;
@@ -200,7 +200,7 @@ bool Object::getObject(int duration, char& characterList, Mat& matList, int thre
             }
         }
     end_loop:
-        imshow("Filtered", video);                      //End of loop, below is where the string of found chars and "character.txt" are managed
+        //imshow("Filtered", video);                      //End of loop, below is where the string of found chars and "character.txt" are managed
         
         if (c != last_char && c != '~') {                           //If a different character is found (and not a '~' local null), c and last_char while be different...
             bool exists = false;                                    //reset temporary flag
