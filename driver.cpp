@@ -17,11 +17,10 @@ int main(int argc, const char * argv[]) {
     if (argc > 2) thresh = atoi(argv[2]);
     std::cout << "Running GetObject for " << duration << " seconds at threshold " << thresh << std::endl;
     Object object;
-    object.getAverage();
+    //object.getAverage();
     char list;
-    object.captureImage();
-    object.captureImage();
-    object.captureImage();
+    for (int i = 0; i < duration; i++)
+        object.captureImage();
     //std::cout << object.getObject(duration, list, matList[0], thresh) << std::endl;
     std::cout << object.scanImageForCharacter(list,thresh) << std::endl;
     //Tester tester;

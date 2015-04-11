@@ -83,6 +83,7 @@ Object::Object() {
 bool Object::captureImage() {
     if (image_counter < 100) {
         cap >> images[image_counter++];
+        std::cout << "Image counter is " << image_counter << std::endl;
         return true;
     }
     else return false;
@@ -242,10 +243,10 @@ bool Object::scanImageForCharacter(char& characterList, int thresh) {
     timeval te, tt;
     int counter = 0;
     gettimeofday(&te, NULL);
-    while (tmp_counter <= image_counter) {
+    while (tmp_counter < image_counter) {
         getAverage();
         counter++;
-        cap >> images[tmp_counter];
+        capture = images[tmp_counter++];
         Mat video(capture, Rect((window_width-samp_window_width)/2,(window_height-samp_window_height)/2, samp_window_width, samp_window_height));
         int tmp_x_min = 0,                                  //Reset object location variables for new scan
         tmp_x_max = 1,
@@ -255,14 +256,13 @@ bool Object::scanImageForCharacter(char& characterList, int thresh) {
         y = 0;
         while (y < video.size().height) {                   //Dual loop scans row from top to bottom, setting pixels to BGR to B&W based off distance from avgs
             while (x < video.size().width) {                //white if similar, black if unique
-                //video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) > diff_thresh) ? Vec3b(1,1,1):Vec3b(0,0,0);
-                video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) > diff_thresh) ? Vec3b(0,0,0):Vec3b(255,255,255);
+                video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) < diff_thresh) ? Vec3b(0,0,0):Vec3b(255,255,255);
                 //video.at<Vec3b>(y,x) = getDiff(video, x, y, avg);
                 x++;
             }
             x = 0;
             y++;
-        }   //(Yes, for loops would have been easier)
+        }
         
         // **********Display Test Start********** //
         
