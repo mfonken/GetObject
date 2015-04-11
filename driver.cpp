@@ -17,7 +17,8 @@ int main(int argc, const char * argv[]) {
     Object object;
     object.getAverage();
     char list;
-    std::cout << object.getObject(duration,list) << std::endl;
+    Mat matList[3];
+    std::cout << object.getObject(duration, list, matList[0]) << std::endl;
     //Tester tester;
     //std::cout << tester.display(duration) << std::endl;
     std::cout << "ended" << std::endl;

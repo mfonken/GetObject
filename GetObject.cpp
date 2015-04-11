@@ -1,4 +1,4 @@
-//
+//  ssh 10.31.184.53 -l root
 //  GetObject.cpp
 //  recognize
 //
@@ -32,7 +32,7 @@ class Object {
 public:
     Object();
     void getAverage();
-    bool getObject(int, char&);
+    bool Object::getObject(int duration, char& characterList, Mat& matList);
     double getDiff(Mat&, int&, int&,int*);
 };
 
@@ -105,7 +105,7 @@ void Object::getAverage() {
     //std::cout << duration << "ms" << std::endl;
 }
 
-bool Object::getObject(int duration, char& characterList) {
+bool Object::getObject(int duration, char& characterList, Mat& matList) {
     std::cout << "Checking Object for " << duration << "s:\n";
     timeval tb, te;
     gettimeofday(&tb, NULL);
@@ -184,7 +184,7 @@ bool Object::getObject(int duration, char& characterList) {
                     }
                 }
                 x+=samp_interval;
-            }
+            }go\
             x = 0;
             y+=samp_interval;
         }
