@@ -106,7 +106,7 @@ void Object::getAverage() {
 }
 
 bool Object::getObject(int duration, char& characterList, Mat& matList, int thresh) {
-    diff_thresh = thesh;
+    diff_thresh = thresh;
     //std::cout << "Checking Object for " << duration << "s:\n";
     timeval tb, te, tt;
     gettimeofday(&tb, NULL);
