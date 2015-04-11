@@ -169,7 +169,7 @@ bool Object::getObject(int duration, char& characterList, Mat& matList) {
                     int object_height = tmp_y_max-tmp_y_min;
                     //If it fits the defined possible object size...
                     if (object_width > object_width_min && object_width < object_width_max && object_height > object_height_min && object_height < object_height_max) {
-                        std::cout << "-";
+                        std::cout << "o";
                         //rectangle(video, Point(tmp_x_min, tmp_y_min), Point(tmp_x_min+object_width, tmp_y_min+object_height), Scalar(0,255,0)); //draw a rectangle over it
                         //std::cout << "Rectangle made at (" << tmp_x_min << ", " << tmp_y_min << ")" << std::endl;
                         //imshow("Object Found", object);             //display it in another window
@@ -184,6 +184,7 @@ bool Object::getObject(int duration, char& characterList, Mat& matList) {
                         //return true;
                         goto end_loop;                              //If any object is found, program exits scan, would otherwise check every black pixel
                     }
+                    else std::cout << "x";
                 }
             if (looper) {
                 x += x_bias * x_inc * samp_interval;
@@ -231,7 +232,7 @@ double Object::getDiff(Mat &video, int &x, int &y, int* background) { //As descr
     //std::cout << "O:" << (int)tmp_color[0] << std::endl;
     int tmp_total = tmp_color[0] + tmp_color[1] + tmp_color[2] + 1;
     //double scaling_factor = 3*255/tmp_total;
-    double greyness = pow(pow((tmp_color[0]-tmp_color[2]),2)+pow((tmp_color[2]-tmp_color[1]),2)+pow((tmp_color[1]-tmp_color[0]),2),1/2);
+    double greyness = sqrt(pow((tmp_color[0]-tmp_color[2]),2)+pow((tmp_color[2]-tmp_color[1]),2)+pow((tmp_color[1]-tmp_color[0]),2));
     //abs(255 - tmp_color[0]*scaling_factor) + abs(255 - tmp_color[1]*scaling_factor) + abs(255 - tmp_color[2]*scaling_factor);
     std::cout << "O:" << greyness << std::endl;
     return greyness;
