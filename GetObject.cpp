@@ -32,7 +32,7 @@ class Object {
 public:
     Object();
     void getAverage();
-    bool getObject(int duration, char& characterList, Mat& matList);
+    bool getObject(int duration, char& characterList, Mat& matList, int thresh);
     int getDiff(Mat&, int&, int&,int*);
 };
 
@@ -105,7 +105,8 @@ void Object::getAverage() {
     //std::cout << duration << "ms" << std::endl;
 }
 
-bool Object::getObject(int duration, char& characterList, Mat& matList) {
+bool Object::getObject(int duration, char& characterList, Mat& matList, int thresh) {
+    diff_thresh = thesh;
     //std::cout << "Checking Object for " << duration << "s:\n";
     timeval tb, te, tt;
     gettimeofday(&tb, NULL);
