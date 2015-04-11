@@ -231,7 +231,7 @@ double Object::getDiff(Mat &video, int &x, int &y, int* background) { //As descr
     //std::cout << "O:" << (int)tmp_color[0] << std::endl;
     int tmp_total = tmp_color[0] + tmp_color[1] + tmp_color[2] + 1;
     //double scaling_factor = 3*255/tmp_total;
-    double greyness = pow(pow((tmp_color[0]-tmp_color[2]),2)+pow((tmp_color[2]-tmp_color[1]),2)+pow(tmp_color[1]-tmp_color[0]),2);
+    double greyness = pow(pow((tmp_color[0]-tmp_color[2]),2)+pow((tmp_color[2]-tmp_color[1]),2)+pow(tmp_color[1]-tmp_color[0]),2),1/2);
     //abs(255 - tmp_color[0]*scaling_factor) + abs(255 - tmp_color[1]*scaling_factor) + abs(255 - tmp_color[2]*scaling_factor);
     //std::cout << "O:" << greyness << std::endl;
     return greyness;
