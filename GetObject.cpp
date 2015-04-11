@@ -71,7 +71,7 @@ Object::Object() {
     object_height_min =  30;
     object_height_max =  200;
     
-    diff_thresh = 10;                       //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
+    diff_thresh = 5;                       //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
 
     scan_y_offset = 0;
 }
@@ -214,7 +214,7 @@ bool Object::getObject(int duration, char& characterList, Mat& matList) {
             last_char = c;                                          //Finally, set this new character to be the last_char
         }
         gettimeofday(&tt, NULL);
-        std::cout << "Loop: " << counter << " | " << (tt.tv_sec - te.tv_sec) + (tt.tv_usec - te.tv_usec)/1000000.0 << "s ";
+        std::cout << " | " << (tt.tv_sec - te.tv_sec) + (tt.tv_usec - te.tv_usec)/1000000.0 << "s ";
         if (c != '~')
             std::cout << ": " << c;
         gettimeofday(&te, NULL);
