@@ -19,8 +19,11 @@ int main(int argc, const char * argv[]) {
     Object object;
     object.getAverage();
     char list;
-    Mat matList[3];
-    std::cout << object.getObject(duration, list, matList[0], thresh) << std::endl;
+    object.captureImage();
+    object.captureImage();
+    object.captureImage();
+    //std::cout << object.getObject(duration, list, matList[0], thresh) << std::endl;
+    std::cout << object.scanImageForCharacter(list,thresh) << std::endl;
     //Tester tester;
     //std::cout << tester.display(duration) << std::endl;
     std::cout << "ended" << std::endl;
