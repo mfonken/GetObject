@@ -256,7 +256,7 @@ bool Object::scanImageForCharacter(char& characterList, int thresh) {
         y = 0;
         while (y < video.size().height) {                   //Dual loop scans row from top to bottom, setting pixels to BGR to B&W based off distance from avgs
             while (x < video.size().width) {                //white if similar, black if unique
-                video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) < diff_thresh) ? Vec3b(0,0,0):Vec3b(255,255,255);
+                video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) > diff_thresh) ? Vec3b(0,0,0):Vec3b(255,255,255);
                 //video.at<Vec3b>(y,x) = getDiff(video, x, y, avg);
                 x++;
             }
