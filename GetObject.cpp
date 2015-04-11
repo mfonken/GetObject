@@ -122,14 +122,14 @@ bool Object::getObject(int duration, char& characterList, Mat& matList, int thre
         tmp_x_max = 1,
         tmp_y_min = 0,
         tmp_y_max = 1;
-        
         int x = 0,                                          //Reset to first pixel coordinate on top left of sample frame
         y = 0;
         while (y < video.size().height) {                   //Dual loop scans row from top to bottom, setting pixels to BGR to B&W based off distance from avgs
             while (x < video.size().width) {                //white if similar, black if unique
                 //video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) > diff_thresh) ? Vec3b(1,1,1):Vec3b(0,0,0);
-                video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) < diff_thresh) ? Vec3b(0,0,0):Vec3b(255,255,255);
-        	x++;
+                //video.at<Vec3b>(y,x) = (getDiff(video, x, y, avg) < diff_thresh) ? Vec3b(0,0,0):Vec3b(255,255,255);
+                video.at<Vec3b>(y,x) = getDiff(video, x, y, avg);
+                x++;
             }
             x = 0;
             y++;
