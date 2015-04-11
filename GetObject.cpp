@@ -71,7 +71,7 @@ Object::Object() {
     object_height_min =  30;
     object_height_max =  200;
     
-    diff_thresh = 5;                       //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
+    diff_thresh = 100;                       //threshold attribute - applies to contrast filtering, used to check returns form 'color distance' function "getDiff"
 
     scan_y_offset = 0;
 }
@@ -184,7 +184,6 @@ bool Object::getObject(int duration, char& characterList, Mat& matList) {
                         //return true;
                         goto end_loop;                              //If any object is found, program exits scan, would otherwise check every black pixel
                     }
-                    else std::cout << "x";
                 }
             if (looper) {
                 x += x_bias * x_inc * samp_interval;
@@ -214,7 +213,7 @@ bool Object::getObject(int duration, char& characterList, Mat& matList) {
             last_char = c;                                          //Finally, set this new character to be the last_char
         }
         gettimeofday(&tt, NULL);
-        std::cout << " | " << (tt.tv_sec - te.tv_sec) + (tt.tv_usec - te.tv_usec)/1000000.0 << "s ";
+        std::cout << "Loop: " << counter << " | " << (tt.tv_sec - te.tv_sec) + (tt.tv_usec - te.tv_usec)/1000000.0 << "s ";
         if (c != '~')
             std::cout << ": " << c;
         gettimeofday(&te, NULL);
@@ -230,13 +229,13 @@ double Object::getDiff(Mat &video, int &x, int &y, int* background) { //As descr
     //return tmp_diff;
    
     //std::cout << "O:" << (int)tmp_color[0] << std::endl;
-    int tmp_total = tmp_color[0] + tmp_color[1] + tmp_color[2] + 1;
+    //int tmp_total = tmp_color[0] + tmp_color[1] + tmp_color[2] + 1;
     //double scaling_factor = 3*255/tmp_total;
-    double greyness = sqrt(pow((tmp_color[0]-tmp_color[2]),2)+pow((tmp_color[2]-tmp_color[1]),2)+pow((tmp_color[1]-tmp_color[0]),2));
+    double greyness = abs(tmp_color[0]-tmp_color[2])+abs(tmp_color[2]-tmp_color[1])+abs(tmp_color[1]-tmp_color[0]);
     //abs(255 - tmp_color[0]*scaling_factor) + abs(255 - tmp_color[1]*scaling_factor) + abs(255 - tmp_color[2]*scaling_factor);
-    //std::cout << "O:" << greyness << std::endl;
+    std::cout << "O:" << greyness << std::endl;
     return greyness;
 }
-double abs(double n) {
+int abs(int n) {
    return (n > 0 ? n:-n);
 }
