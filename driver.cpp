@@ -18,11 +18,14 @@ int main(int argc, const char * argv[]) {
     if (argc > 2) thresh = atoi(argv[2]);
     std::cout << "Running GetObject for " << count << " seconds at threshold " << thresh << std::endl;
     Object object;
-    //object.getAverage();
     char list;
-    for (int i = 0; i < count; i++)
-        object.captureImage();
-    
+    if (object.getAverage()) {
+        for (int i = 0; i < count; i++)
+            object.captureImage();
+    }
+    else {
+        std::cout << "No." << std::endl;
+    }
     timeval tb, te;
     gettimeofday(&tb, NULL);
     gettimeofday(&te, NULL);

@@ -32,7 +32,7 @@ class Object {
     int image_counter;
 public:
     Object();
-    void getAverage();
+    bool getAverage();
     bool captureImage();
     bool getObject(int duration, char& characterList, int thresh);
     bool scanImageForCharacter(char& characterList, int thresh);
@@ -89,7 +89,7 @@ bool Object::captureImage() {
     else return false;
 }
 
-void Object::getAverage() {
+bool Object::getAverage() {
     //std::cout << "Get Average: ";
     int test = 200;
     timeval tb, te;
@@ -116,6 +116,10 @@ void Object::getAverage() {
     duration = (te.tv_sec - tb.tv_sec) * 1000;      // sec to ms
     duration += (te.tv_usec - tb.tv_usec) / 1000.0;
     //std::cout << duration << "ms" << std::endl;
+    if (avg[1] > avg[0] && avg[1] > avg[2]) {
+        return false;
+    }
+    else return true;
 }
 
 bool Object::getObject(int duration, char& characterList, int thresh) {
