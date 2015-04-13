@@ -48,7 +48,7 @@ Object::Object() {
     tempCap.set(CV_CAP_PROP_FRAME_HEIGHT,240);
     //tempCap.set(CV_CAP_PROP_BRIGHTNESS, 255);
     //tempCap.set(CV_CAP_PROP_CONTRAST, 100.0);
-    if(!tempCap.isOpened()) {
+    if(!tmpCap.isOpened()) {
         std::cout << "No camera!" << std::endl;
         return;
     }
