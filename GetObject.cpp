@@ -18,7 +18,7 @@
 using namespace cv;
 
 class Object {
-    VideoCapture cap;                        //Initalize camera
+                           //Initalize camera
     int window_width, window_height;
     char last_char, c;
     std::string chars;
@@ -32,6 +32,7 @@ class Object {
     int image_counter;
 public:
     Object();
+    VideoCapture cap; 
     bool getAverage();
     bool captureImage();
     bool getObject(int duration, char& characterList, int thresh);
