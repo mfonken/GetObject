@@ -48,14 +48,14 @@ Object::Object() {
     tempCap.set(CV_CAP_PROP_FRAME_HEIGHT,240);
     //tempCap.set(CV_CAP_PROP_BRIGHTNESS, 255);
     //tempCap.set(CV_CAP_PROP_CONTRAST, 100.0);
+    if(!tempCap.isOpened()) {
+        std::cout << "No camera!" << std::endl;
+        return;
+    }
     cap = tempCap;
     tempCap.release();
     Mat tempObject(100, 100,  CV_8UC3);
     object = tempObject;
-    if(!cap.isOpened()) {
-        std::cout << "No camera!" << std::endl;
-        return;
-    }
     Mat temp;
     cap >> temp;
     std::cout << "cols: " << temp.cols << " | rows: " << temp.rows << std::endl;
