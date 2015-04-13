@@ -39,7 +39,7 @@ int main(int argc, const char * argv[]) {
     gettimeofday(&tb, NULL);
     gettimeofday(&te, NULL);
     std::cout << "disconnecting camera" << std::endl;
-    object.cap.release()
+    object.cap.release();
     while ((double)(te.tv_sec - tb.tv_sec) < 5) gettimeofday(&te, NULL);
     return 0;
 }
