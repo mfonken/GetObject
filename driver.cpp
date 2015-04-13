@@ -9,6 +9,7 @@
 #include <iostream>
 #include "GetObject.cpp"
 #include "CameraTest.cpp"
+#include <sys/time.h>
 
 int main(int argc, const char * argv[]) {
     int count = 30;
@@ -21,6 +22,11 @@ int main(int argc, const char * argv[]) {
     char list;
     for (int i = 0; i < count; i++)
         object.captureImage();
+    
+    timeval tb, te;
+    gettimeofday(&tb, NULL);
+    gettimeofday(&te, NULL);
+    while ((double)(te.tv_sec - tb.tv_sec) < 5) gettimeofday(&te, NULL);
     //std::cout << object.getObject(count, list, thresh) << std::endl;
     std::cout << object.scanImageForCharacter(list,thresh) << std::endl;
     //Tester tester;
