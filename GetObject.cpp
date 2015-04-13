@@ -32,7 +32,7 @@ class Object {
     int image_counter;
 public:
     Object();
-    VideoCapture cap; 
+    VideoCapture cap;
     bool getAverage();
     bool captureImage();
     bool getObject(int duration, char& characterList, int thresh);
@@ -49,6 +49,7 @@ Object::Object() {
     //tempCap.set(CV_CAP_PROP_BRIGHTNESS, 255);
     //tempCap.set(CV_CAP_PROP_CONTRAST, 100.0);
     cap = tempCap;
+    tempCap.release();
     Mat tempObject(100, 100,  CV_8UC3);
     object = tempObject;
     if(!cap.isOpened()) {
