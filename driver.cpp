@@ -19,10 +19,10 @@ int main(int argc, const char * argv[]) {
     Object object;
     //object.getAverage();
     char list;
-    //for (int i = 0; i < count; i++)
+    for (int i = 0; i < count; i++)
         object.captureImage();
-    std::cout << object.getObject(count, list, thresh) << std::endl;
-    //std::cout << object.scanImageForCharacter(list,thresh) << std::endl;
+    //std::cout << object.getObject(count, list, thresh) << std::endl;
+    std::cout << object.scanImageForCharacter(list,thresh) << std::endl;
     //Tester tester;
     //std::cout << tester.display(count) << std::endl;
     std::cout << "ended" << std::endl;
