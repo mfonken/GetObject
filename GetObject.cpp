@@ -13,7 +13,7 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <string>
-#include <sys/time.h>
+//#include <sys/time.h>
 
 using namespace cv;
 
@@ -93,9 +93,9 @@ bool Object::captureImage() {
 bool Object::getAverage() {
     //std::cout << "Get Average: ";
     int test = 200;
-    timeval tb, te;
+    //timeval tb, te;
     float duration;
-    gettimeofday(&tb, NULL);
+    //gettimeofday(&tb, NULL);
     cap >> capture;
     
     avg[0] = 0;                                      //...and divide by length to get average
@@ -113,9 +113,9 @@ bool Object::getAverage() {
     avg[2] /= samp;
      
     //std::cout << "Background is (" << avg[0] << ", " << avg[1] << ", " << avg[2] << ")" << std::endl;
-    gettimeofday(&te, NULL);
-    duration = (te.tv_sec - tb.tv_sec) * 1000;      // sec to ms
-    duration += (te.tv_usec - tb.tv_usec) / 1000.0;
+    //gettimeofday(&te, NULL);
+    //duration = (te.tv_sec - tb.tv_sec) * 1000;      // sec to ms
+    //duration += (te.tv_usec - tb.tv_usec) / 1000.0;
     //std::cout << duration << "ms" << std::endl;
     if (avg[1] > avg[0] && avg[1] > avg[2]) {
         return false;
@@ -128,7 +128,7 @@ char Object::scanImageForCharacter(int id, int thresh) {
     diff_thresh = thresh;
     timeval te, tt;
     int counter = 0;
-    gettimeofday(&te, NULL);
+    //gettimeofday(&te, NULL);
     for (int i = 0; i < 5; i++) {
         getAverage();
         counter++;
@@ -150,12 +150,12 @@ char Object::scanImageForCharacter(int id, int thresh) {
         }
         
         // **********Display Test Start********** //
-        /*
+        
         Mat sizeMat(30,30,  CV_8UC3), temp;
         resize(video, sizeMat, sizeMat.size(), INTER_LINEAR);
         cv::cvtColor(sizeMat, temp, CV_BGR2GRAY);
         std::cout << "Frame: " << std::endl << temp << std::endl;
-        */
+        
         // **********Display Test End********** //
         x = video.size().width/2;                                              //Reset to first pixel again
         y = video.size().height/2;
@@ -216,11 +216,11 @@ char Object::scanImageForCharacter(int id, int thresh) {
             }
             last_char = c;                                          //Finally, set this new character to be the last_char
         }
-        gettimeofday(&tt, NULL);
+        //gettimeofday(&tt, NULL);
         //std::cout << "Loop: " << counter << " | " << (tt.tv_sec - te.tv_sec) + (tt.tv_usec - te.tv_usec)/1000000.0 << "s ";
         if (c != '~')
             return c;
-        gettimeofday(&te, NULL);
+        //gettimeofday(&te, NULL);
         std::cout << std::endl;
     }
     return '~';

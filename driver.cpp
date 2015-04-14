@@ -28,7 +28,7 @@ int main(int argc, const char * argv[]) {
     timeval tb, te;
     gettimeofday(&tb, NULL);
     gettimeofday(&te, NULL);
-    while ((double)(te.tv_sec - tb.tv_sec) < 5) gettimeofday(&te, NULL);
+    while ((double)(te.tv_sec - tb.tv_sec) < 0.01) gettimeofday(&te, NULL);
     //std::cout << object.getObject(count, list, thresh) << std::endl;
     std::cout << object.scanImageForCharacter(list,thresh) << std::endl;
     //Tester tester;
