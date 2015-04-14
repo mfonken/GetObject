@@ -4,7 +4,7 @@ find_package( OpenCV )
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 add_custom_target(
    extern_lib
-   COMMAND make
+   COMMAND make alaska
    WORKING_DIRECTORY .
 )
 add_executable( demoImage experimentalExplore.cpp )
