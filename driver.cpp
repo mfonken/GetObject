@@ -20,13 +20,11 @@ int main(int argc, const char * argv[]) {
     Object object;
     if (!object.cap.isOpened()) return 0;
     char list;
-    if (object.getAverage()) {
-        for (int i = 0; i < count; i++)
-            object.captureImage();
-    }
-    else {
-        std::cout << "No." << std::endl;
-    }
+    for (int i = 0; i < count; i++)
+        if(!object.captureImage()) {
+            std::cout << "No." << std::endl;
+            return 0;
+        }
     timeval tb, te;
     gettimeofday(&tb, NULL);
     gettimeofday(&te, NULL);
